@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+// import { useRouter } from "next/navigation"
 import { ExternalLink, Info } from "lucide-react"
 
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 export default function ResultsClient({ params }: { params: { id: string } }) {
-  const router = useRouter();
+//   const router = useRouter();
 
   // Sample data - in a real app, this would come from an API
   const election = {
