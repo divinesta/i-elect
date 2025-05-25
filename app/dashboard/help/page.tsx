@@ -29,28 +29,28 @@ export default function HelpPage() {
                         <AccordionItem value="item-1">
                            <AccordionTrigger>How do I vote in an election?</AccordionTrigger>
                            <AccordionContent>
-                              To vote in an election, go to the Elections page, find an ongoing election, and click "Vote Now". Select your preferred candidate or option, review your choice, and click
-                              "Confirm Vote". You'll receive a vote ID for verification purposes.
+                              To vote in an election, go to the Elections page, find an ongoing election, and click &quot;Vote Now&quot;. Select your preferred candidate or option, review your choice, and click
+                              &quot;Confirm Vote&quot;. You&apos;ll receive a vote ID for verification purposes.
                            </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-2">
                            <AccordionTrigger>What is a vote ID and why do I need it?</AccordionTrigger>
                            <AccordionContent>
                               A vote ID is a unique identifier for your vote on the blockchain. It allows you to verify that your vote was correctly recorded without revealing your identity. Keep your
-                              vote ID secure as it's your proof of participation.
+                              vote ID secure as it&apos;s your proof of participation.
                            </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-3">
                            <AccordionTrigger>How do I verify my vote?</AccordionTrigger>
                            <AccordionContent>
-                              To verify your vote, go to the Voting History page and click "Verify" next to the election, or use the verification form at the bottom of the page. Enter your vote ID to
+                              To verify your vote, go to the Voting History page and click &quot;Verify&quot; next to the election, or use the verification form at the bottom of the page. Enter your vote ID to
                               confirm your vote was recorded correctly on the blockchain.
                            </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-4">
                            <AccordionTrigger>Why do I need to connect a wallet?</AccordionTrigger>
                            <AccordionContent>
-                              Connecting a blockchain wallet allows you to securely sign your votes and verify your identity without revealing personal information. It's an essential part of ensuring
+                              Connecting a blockchain wallet allows you to securely sign your votes and verify your identity without revealing personal information. It&apos;s an essential part of ensuring
                               the security and transparency of the voting process.
                            </AccordionContent>
                         </AccordionItem>

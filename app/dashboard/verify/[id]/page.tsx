@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { CheckCircle, Copy, ExternalLink } from "lucide-react";
 
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function VerifyPage({ params }: { params: { id: string } }) {
-   const router = useRouter();
+   // const router = useRouter();
    const [isVerifying, setIsVerifying] = useState(true);
    const [copied, setCopied] = useState(false);
 

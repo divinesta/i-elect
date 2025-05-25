@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Search, Plus, Edit, Trash2, Eye } from "lucide-react";
 import Link from "next/link";
+import Image from 'next/image';
 
 import { AdminLayout } from "@/components/admin/admin-layout";
 import { Card, CardContent } from "@/components/ui/card";
@@ -101,7 +102,7 @@ export default function CandidatesPage() {
                      <CardContent className="p-0">
                         {/* Image */}
                         <div className="relative h-48 bg-gray-200">
-                           <img
+                           <Image
                               src={candidate.image || "/placeholder.svg"}
                               alt={candidate.name}
                               className="w-full h-full object-cover"
@@ -129,7 +130,7 @@ export default function CandidatesPage() {
                            </div>
 
                            <div className="bg-gray-50 rounded-lg p-3">
-                              <p className="text-sm text-gray-700 italic">"{candidate.quote}"</p>
+                              <p className="text-sm text-gray-700 italic">&quot;{candidate.quote}&quot;</p>
                            </div>
 
                            {/* Actions */}

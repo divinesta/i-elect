@@ -68,7 +68,7 @@ export default function ForgotPasswordPage() {
                </div>
                <h3 className="text-xl font-semibold">Check your email</h3>
                <p className="text-muted-foreground">
-                  We've sent a password reset link to <span className="font-medium">{form.getValues().email}</span>. Please check your inbox and follow the instructions to reset your password.
+                  We&apos;ve sent a password reset link to <span className="font-medium">{form.getValues().email}</span>. Please check your inbox and follow the instructions to reset your password.
                </p>
                <Button variant="outline" className="mt-4" onClick={() => setIsSubmitted(false)}>
                   Go back

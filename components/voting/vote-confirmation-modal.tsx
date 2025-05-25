@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { X, CheckCircle } from "lucide-react";
 
+import Image from 'next/image';
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -60,7 +62,7 @@ export function VoteConfirmationModal({ candidate, role, isOpen, onClose, onConf
                   <CardContent className="space-y-6">
                      <div className="text-center">
                         <div className="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden">
-                           <img src={candidate.image || "/placeholder.svg"} alt={candidate.name} className="w-full h-full object-cover" />
+                           <Image src={candidate.image || "/placeholder.svg"} alt={candidate.name} className="w-full h-full object-cover" />
                         </div>
                         <h3 className="text-lg font-semibold text-gray-900">{candidate.name}</h3>
                         <p className="text-blue-600">{candidate.course}</p>

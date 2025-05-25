@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Upload, Eye } from "lucide-react";
 import Link from "next/link";
+import Image from 'next/image';
 
 import { AdminLayout } from "@/components/admin/admin-layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -80,7 +81,7 @@ export default function NewCandidatePage() {
                      <Card>
                         <CardHeader>
                            <CardTitle>Basic Information</CardTitle>
-                           <CardDescription>Enter the candidate's personal details</CardDescription>
+                           <CardDescription>Enter the candidate&apos;s personal details</CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
                            <div>
@@ -207,7 +208,7 @@ export default function NewCandidatePage() {
                               <div className="relative w-32 flex-shrink-0">
                                  <div className="h-28 relative overflow-hidden bg-gray-100">
                                     {imagePreview ? (
-                                       <img src={imagePreview || "/placeholder.svg"} alt="Preview" className="w-full h-full object-cover" />
+                                       <Image src={imagePreview || "/placeholder.svg"} alt="Preview" className="w-full h-full object-cover" />
                                     ) : (
                                        <div className="w-full h-full flex items-center justify-center text-gray-400">
                                           <Upload className="h-8 w-8" />
@@ -222,7 +223,7 @@ export default function NewCandidatePage() {
                                     <h3 className="text-lg font-bold text-gray-900">{formData.name || "Candidate Name"}</h3>
                                     <div className="text-sm text-gray-600">{formData.course && formData.year ? `${formData.course} • ${formData.year}` : "Course • Year"}</div>
                                     <div className="bg-gray-50 rounded p-2 border-l-4 border-[#1D4ED8]">
-                                       <p className="text-sm text-gray-700 italic">"{formData.quote || "Campaign quote will appear here"}"</p>
+                                       <p className="text-sm text-gray-700 italic">&quot;{formData.quote || "Campaign quote will appear here"}&quot;</p>
                                     </div>
                                  </div>
                               </div>

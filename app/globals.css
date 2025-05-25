@@ -41,11 +41,11 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground overflow-x-hidden;
+    @apply bg-background text-foreground overflow-x-hidden m-0 p-0;
   }
   html,
   body {
-    @apply h-full;
+    @apply h-full m-0 p-0;
   }
 }
 
@@ -53,6 +53,8 @@
 .auth-container {
   @apply min-h-screen flex flex-col md:flex-row bg-white overflow-hidden;
   height: 100vh; /* Fix extra white space */
+  margin: 0;
+  padding: 0;
 }
 
 .auth-left {
@@ -184,7 +186,7 @@
 @media (max-width: 768px) {
   .auth-container {
     @apply flex-col;
-    height: auto; /* Allow content to determine height on mobile */
+    height: 100%; /* Fill available height */
     min-height: 100vh; /* Ensure it takes at least full viewport height */
   }
 
@@ -214,5 +216,34 @@
 
   .auth-form {
     @apply space-y-3;
+  }
+}
+
+/* Fix for the bottom white space */
+#__next,
+main {
+  @apply h-full;
+}
+
+/* Ensure the page takes up the full height */
+html,
+body,
+#__next,
+main,
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Additional fix for mobile */
+@media (max-width: 768px) {
+  html,
+  body {
+    @apply overflow-x-hidden;
+  }
+
+  body {
+    position: relative;
   }
 }

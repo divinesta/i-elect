@@ -48,7 +48,7 @@ export default function VotingHistoryPage() {
             <Card>
                <CardHeader>
                   <CardTitle>Your Past Votes</CardTitle>
-                  <CardDescription>A record of all elections you've participated in</CardDescription>
+                  <CardDescription>A record of all elections you&apos;ve participated in</CardDescription>
                </CardHeader>
                <CardContent>
                   {votingHistory.length > 0 ? (
@@ -96,7 +96,7 @@ export default function VotingHistoryPage() {
                            <CheckCircle className="h-6 w-6 text-gray-400" />
                         </div>
                         <h3 className="mt-2 text-sm font-semibold text-gray-900">No voting history</h3>
-                        <p className="mt-1 text-sm text-gray-500">You haven't voted in any elections yet.</p>
+                        <p className="mt-1 text-sm text-gray-500">You haven&apos;t voted in any elections yet.</p>
                         <div className="mt-6">
                            <Button asChild>
                               <Link href="/dashboard/elections">View Available Elections</Link>

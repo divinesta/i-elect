@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { ArrowLeft, Quote, GraduationCap, Users, Star } from "lucide-react";
 import Link from "next/link";
+import Image from 'next/image';
 import { useRouter } from "next/navigation";
 
 import { VotingLayout } from "@/components/voting/voting-layout";
@@ -10,7 +10,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 export default function RoleVotingPage({ params }: { params: { role: string } }) {
-   const [selectedCandidate, setSelectedCandidate] = useState<string | null>(null);
    const router = useRouter();
 
    // Sample candidates data with real images
@@ -77,7 +76,6 @@ export default function RoleVotingPage({ params }: { params: { role: string } })
    const currentRole = roleData[params.role as keyof typeof roleData] || roleData.president;
 
    const handleVoteClick = (candidateId: string) => {
-      setSelectedCandidate(candidateId);
       const candidate = currentRole.candidates.find((c) => c.id === candidateId);
       if (candidate) {
          router.push(`/vote/${params.role}/confirm?candidate=${candidateId}`);
@@ -116,7 +114,7 @@ export default function RoleVotingPage({ params }: { params: { role: string } })
                         {/* Image Section */}
                         <div className="relative">
                            <div className="aspect-[4/3] relative overflow-hidden">
-                              <img
+                              <Image
                                  src={candidate.image || "/placeholder.svg"}
                                  alt={candidate.name}
                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -153,7 +151,7 @@ export default function RoleVotingPage({ params }: { params: { role: string } })
                            {/* Quote */}
                            <div className="bg-gray-50 rounded-lg p-3 border-l-3 border-blue-500">
                               <Quote className="h-4 w-4 text-blue-400 mb-2" />
-                              <p className="text-sm text-gray-700 italic leading-relaxed">"{candidate.quote}"</p>
+                              <p className="text-sm text-gray-700 italic leading-relaxed">&quot;{candidate.quote}&quot;</p>
                            </div>
 
                            {/* Vote Button */}
@@ -177,7 +175,7 @@ export default function RoleVotingPage({ params }: { params: { role: string } })
                               <span className="text-white font-bold text-sm">1</span>
                            </div>
                            <p>
-                              <strong>Review</strong> each candidate's profile
+                              <strong>Review</strong> each candidate&apos;s profile
                            </p>
                         </div>
                         <div className="space-y-2">

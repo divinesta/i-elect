@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft, CheckCircle, Shield, Clock } from "lucide-react";
 import Link from "next/link";
+import Image from 'next/image';
 
 import { VotingLayout } from "@/components/voting/voting-layout";
 import { Card, CardContent } from "@/components/ui/card";
@@ -128,7 +129,7 @@ export default function ConfirmVotePage({ params }: { params: { role: string } }
                <Card className="border border-gray-200">
                   <CardContent className="p-4">
                      <div className="flex items-center space-x-3">
-                        <img src={candidate.image || "/placeholder.svg"} alt={candidate.name} className="w-12 h-12 rounded-full object-cover" />
+                        <Image src={candidate.image || "/placeholder.svg"} alt={candidate.name} className="w-12 h-12 rounded-full object-cover" />
                         <div className="text-left">
                            <p className="font-medium text-gray-900">{candidate.name}</p>
                            <p className="text-sm text-gray-600">{currentRole.title}</p>
@@ -182,7 +183,7 @@ export default function ConfirmVotePage({ params }: { params: { role: string } }
                <CardContent className="p-6 space-y-6">
                   {/* Candidate Info */}
                   <div className="flex items-center space-x-4">
-                     <img src={candidate.image || "/placeholder.svg"} alt={candidate.name} className="w-16 h-16 rounded-full object-cover" />
+                     <Image src={candidate.image || "/placeholder.svg"} alt={candidate.name} className="w-16 h-16 rounded-full object-cover" />
                      <div>
                         <h2 className="text-lg font-semibold text-gray-900">{candidate.name}</h2>
                         <p className="text-gray-600">
@@ -194,7 +195,7 @@ export default function ConfirmVotePage({ params }: { params: { role: string } }
 
                   {/* Quote */}
                   <div className="bg-gray-50 rounded-lg p-4">
-                     <p className="text-sm text-gray-700 italic">"{candidate.quote}"</p>
+                     <p className="text-sm text-gray-700 italic">&quot;{candidate.quote}&quot;</p>
                   </div>
 
                   {/* Vote Summary */}

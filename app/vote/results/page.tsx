@@ -1,4 +1,6 @@
 "use client";
+
+import Image from 'next/image';
 import { Calendar, Users, Trophy, Medal, Award, Crown, CheckCircle } from "lucide-react";
 
 import { VotingLayout } from "@/components/voting/voting-layout";
@@ -191,7 +193,7 @@ export default function ResultsPage() {
 
                               <div className="text-center space-y-4">
                                  <div className="relative">
-                                    <img
+                                    <Image
                                        src={winner?.image || "/placeholder.svg"}
                                        alt={winner?.name}
                                        className="w-16 h-16 rounded-full mx-auto object-cover border-2 border-white shadow-lg group-hover:scale-110 transition-transform duration-300"
@@ -257,7 +259,7 @@ export default function ResultsPage() {
                                              </span>
                                           </div>
 
-                                          <img
+                                          <Image
                                              src={candidate.image || "/placeholder.svg"}
                                              alt={candidate.name}
                                              className="w-12 h-12 rounded-full object-cover border-2 border-gray-200"

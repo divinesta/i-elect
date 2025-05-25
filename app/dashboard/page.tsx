@@ -67,7 +67,7 @@ export default function DashboardPage() {
          <div className="flex flex-col space-y-6">
             <div>
                <h1 className="text-2xl font-bold tracking-tight">Hello, John Doe!</h1>
-               <p className="text-muted-foreground">Here's what's happening with your elections.</p>
+               <p className="text-muted-foreground">Here&apos;s what&apos;s happening with your elections.</p>
             </div>
 
             {/* Summary Cards */}
@@ -96,7 +96,7 @@ export default function DashboardPage() {
                   </CardHeader>
                   <CardContent>
                      <div className="text-2xl font-bold">{summaryData.completed}</div>
-                     <p className="text-xs text-muted-foreground">Elections you've participated in</p>
+                     <p className="text-xs text-muted-foreground">Elections you&apos;ve participated in</p>
                   </CardContent>
                </Card>
             </div>

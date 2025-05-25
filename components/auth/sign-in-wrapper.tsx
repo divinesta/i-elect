@@ -1,5 +1,6 @@
 import type React from "react";
 import Link from "next/link";
+import Image from 'next/image';
 import { LockIcon, ShieldCheckIcon, CheckCircleIcon, ServerIcon, DatabaseIcon } from "lucide-react";
 
 interface SignInWrapperProps {
@@ -59,7 +60,7 @@ export function SignInWrapper({ children, title, description, backLink }: SignIn
                {/* Network sphere */}
                <div className="absolute inset-0 flex items-center justify-center">
                   <div className="relative w-[80%] max-w-[500px] aspect-square">
-                     <img src="/images/network-sphere.jpg" alt="Network sphere" className="absolute inset-0 w-full h-full object-contain floating-slow" />
+                     <Image src="/images/network-sphere.jpg" alt="Network sphere" className="absolute inset-0 w-full h-full object-contain floating-slow" />
                      {/* Glow effect */}
                      <div className="absolute inset-0 bg-blue-500 opacity-20 blur-3xl rounded-full"></div>
                   </div>

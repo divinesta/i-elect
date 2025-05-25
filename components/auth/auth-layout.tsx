@@ -1,16 +1,16 @@
 import type React from "react";
 import Link from "next/link";
+import Image from 'next/image';
 
 interface AuthLayoutProps {
    children: React.ReactNode;
-   title: string;
    subtitle?: string;
    imageSrc: string;
    imageAlt: string;
    isSignUp?: boolean;
 }
 
-export function AuthLayout({ children, title, subtitle, imageSrc, imageAlt, isSignUp = false }: AuthLayoutProps) {
+export function AuthLayout({ children, subtitle, imageSrc, imageAlt, isSignUp = false }: AuthLayoutProps) {
    return (
       <div className="flex min-h-screen w-full">
          {/* Left side - Form */}
@@ -34,7 +34,7 @@ export function AuthLayout({ children, title, subtitle, imageSrc, imageAlt, isSi
                      </p>
                   ) : (
                      <p className="text-slate-600">
-                        Don't have an account?{" "}
+                        Don&apos;t have an account?{" "}
                         <Link href="/sign-up" className="font-medium text-blue-500 hover:text-blue-600">
                            Register
                         </Link>
@@ -46,7 +46,7 @@ export function AuthLayout({ children, title, subtitle, imageSrc, imageAlt, isSi
 
          {/* Right side - Image */}
          <div className="hidden md:block md:w-1/2">
-            <img src={imageSrc || "/placeholder.svg"} alt={imageAlt} className="h-full w-full object-cover" />
+            <Image src={imageSrc || "/placeholder.svg"} alt={imageAlt} className="h-full w-full object-cover" />
          </div>
       </div>
    );
