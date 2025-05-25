@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Link from "next/link";
 // import { useRouter } from "next/navigation";
 import { CheckCircle, Copy, ExternalLink } from "lucide-react";
@@ -9,7 +9,8 @@ import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function VerifyPage({ params }: { params: { id: string } }) {
+export default function VerifyPage(props: { params: Promise<{ id: string }> }) {
+   const params = use(props.params);
    // const router = useRouter();
    const [isVerifying, setIsVerifying] = useState(true);
    const [copied, setCopied] = useState(false);

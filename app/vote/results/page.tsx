@@ -195,7 +195,7 @@ export default function ResultsPage() {
                                  <div className="relative">
                                     <Image
                                        src={winner?.image || "/placeholder.svg"}
-                                       alt={winner?.name}
+                                       alt={winner?.name ?? "Election Winner"}
                                        className="w-16 h-16 rounded-full mx-auto object-cover border-2 border-white shadow-lg group-hover:scale-110 transition-transform duration-300"
                                        onError={(e) => {
                                           const target = e.target as HTMLImageElement;

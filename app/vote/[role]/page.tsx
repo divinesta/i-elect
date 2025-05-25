@@ -1,4 +1,5 @@
-"use client";
+"use client";;
+import { use } from "react";
 
 import { ArrowLeft, Quote, GraduationCap, Users, Star } from "lucide-react";
 import Link from "next/link";
@@ -9,7 +10,8 @@ import { VotingLayout } from "@/components/voting/voting-layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-export default function RoleVotingPage({ params }: { params: { role: string } }) {
+export default function RoleVotingPage(props: { params: Promise<{ role: string }> }) {
+   const params = use(props.params);
    const router = useRouter();
 
    // Sample candidates data with real images

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft, CheckCircle, Shield, Clock } from "lucide-react";
 import Link from "next/link";
@@ -10,7 +10,8 @@ import { VotingLayout } from "@/components/voting/voting-layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-export default function ConfirmVotePage({ params }: { params: { role: string } }) {
+export default function ConfirmVotePage(props: { params: Promise<{ role: string }> }) {
+   const params = use(props.params);
    const router = useRouter();
    const searchParams = useSearchParams();
    const candidateId = searchParams.get("candidate");

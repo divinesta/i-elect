@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, use } from "react";
 import { useRouter } from "next/navigation";
 import { CheckCircle, Clock, Info } from "lucide-react";
 
@@ -11,7 +11,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-export default function VotePage({ params }: { params: { id: string } }) {
+export default function VotePage(props: { params: Promise<{ id: string }> }) {
+   const params = use(props.params);
    const router = useRouter();
    const [selectedCandidate, setSelectedCandidate] = useState<string | null>(null);
    const [isVoting, setIsVoting] = useState(false);
