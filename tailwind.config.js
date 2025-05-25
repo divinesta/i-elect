@@ -1,16 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    darkMode: ["class"],
-    content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+   darkMode: ["class"],
+   content: [
+   "./app/**/*.{js,ts,jsx,tsx,mdx}",
+   "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+   "./components/**/*.{js,ts,jsx,tsx,mdx}",
 
     // Or if using `src` directory:
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-  	extend: {
+   "./src/**/*.{js,ts,jsx,tsx,mdx}",
+   ],
+   theme: {
+	extend: {
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
@@ -29,7 +29,9 @@ module.exports = {
   			},
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
+  				foreground: 'hsl(var(--primary-foreground))',
+                lightest: 'hsl(196, 100%, 90%)',
+                lighter: 'hsl(196, 100%, 70%)'
   			},
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
@@ -58,8 +60,7 @@ module.exports = {
   				'5': 'hsl(var(--chart-5))'
   			}
   		}
-  	}
-  },
-  plugins: [require("tailwindcss-animate")],
-}
-
+      },
+   },
+   plugins: [require("tailwindcss-animate")],
+};
