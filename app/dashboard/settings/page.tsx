@@ -3,178 +3,217 @@
 import type React from "react";
 
 import { useState } from "react";
-import { Wallet } from "lucide-react";
-
-import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import { Eye, EyeOff, Wallet, Check, X } from "lucide-react";
 
 export default function SettingsPage() {
-   const [isUpdating, setIsUpdating] = useState(false);
-   const [isConnectingWallet, setIsConnectingWallet] = useState(false);
-   const [walletConnected, setWalletConnected] = useState(false);
-   const [walletAddress, setWalletAddress] = useState("");
+   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+   const [showNewPassword, setShowNewPassword] = useState(false);
+   const [isWalletConnected, setIsWalletConnected] = useState(false);
 
-   const handleProfileUpdate = (e: React.FormEvent) => {
+   const [profileData, setProfileData] = useState({
+      fullName: "John Doe",
+      email: "john.doe@example.com",
+      phone: "+1 (555) 123-4567",
+   });
+
+   const [passwordData, setPasswordData] = useState({
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: "",
+   });
+
+   const passwordRequirements = [
+      { text: "At least 8 characters", met: passwordData.newPassword.length >= 8 },
+      { text: "Contains uppercase letter", met: /[A-Z]/.test(passwordData.newPassword) },
+      { text: "Contains lowercase letter", met: /[a-z]/.test(passwordData.newPassword) },
+      { text: "Contains number", met: /\d/.test(passwordData.newPassword) },
+   ];
+
+   const handleProfileUpdate = async (e: React.FormEvent) => {
       e.preventDefault();
-      setIsUpdating(true);
-      // Simulate API call
-      setTimeout(() => {
-         setIsUpdating(false);
-         // Show success message
-      }, 1000);
+      // Handle profile update
+      console.log("Profile updated:", profileData);
    };
 
-   const handlePasswordUpdate = (e: React.FormEvent) => {
+   const handlePasswordUpdate = async (e: React.FormEvent) => {
       e.preventDefault();
-      setIsUpdating(true);
-      // Simulate API call
-      setTimeout(() => {
-         setIsUpdating(false);
-         // Show success message
-      }, 1000);
+      // Handle password update
+      console.log("Password updated");
    };
 
-   const handleConnectWallet = () => {
-      setIsConnectingWallet(true);
-      // Simulate wallet connection
-      setTimeout(() => {
-         setIsConnectingWallet(false);
-         setWalletConnected(true);
-         setWalletAddress("0x7f9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a");
-      }, 1500);
-   };
-
-   const handleDisconnectWallet = () => {
-      setWalletConnected(false);
-      setWalletAddress("");
+   const handleWalletConnection = () => {
+      setIsWalletConnected(!isWalletConnected);
    };
 
    return (
-      <DashboardLayout>
-         <div className="flex flex-col space-y-6">
-            <div>
-               <h1 className="text-2xl font-bold tracking-tight">Account Settings</h1>
-               <p className="text-muted-foreground">Manage your account details and security.</p>
-            </div>
-
-            <Tabs defaultValue="profile" className="w-full">
-               <TabsList className="grid w-full grid-cols-3 md:w-auto">
-                  <TabsTrigger value="profile">Profile</TabsTrigger>
-                  <TabsTrigger value="password">Password</TabsTrigger>
-                  <TabsTrigger value="wallet">Wallet</TabsTrigger>
-               </TabsList>
-
-               <TabsContent value="profile" className="mt-6">
-                  <Card>
-                     <CardHeader>
-                        <CardTitle>Profile Information</CardTitle>
-                        <CardDescription>Update your personal information</CardDescription>
-                     </CardHeader>
-                     <form onSubmit={handleProfileUpdate}>
-                        <CardContent className="space-y-4">
-                           <div className="space-y-2">
-                              <Label htmlFor="name">Full Name</Label>
-                              <Input id="name" defaultValue="John Doe" />
-                           </div>
-                           <div className="space-y-2">
-                              <Label htmlFor="email">Email Address</Label>
-                              <Input id="email" type="email" defaultValue="john.doe@example.com" />
-                           </div>
-                           <div className="space-y-2">
-                              <Label htmlFor="phone">Phone Number</Label>
-                              <Input id="phone" type="tel" defaultValue="+1 (555) 123-4567" />
-                           </div>
-                        </CardContent>
-                        <CardFooter>
-                           <Button type="submit" disabled={isUpdating}>
-                              {isUpdating ? "Saving..." : "Save Changes"}
-                           </Button>
-                        </CardFooter>
-                     </form>
-                  </Card>
-               </TabsContent>
-
-               <TabsContent value="password" className="mt-6">
-                  <Card>
-                     <CardHeader>
-                        <CardTitle>Change Password</CardTitle>
-                        <CardDescription>Update your password to keep your account secure</CardDescription>
-                     </CardHeader>
-                     <form onSubmit={handlePasswordUpdate}>
-                        <CardContent className="space-y-4">
-                           <div className="space-y-2">
-                              <Label htmlFor="current-password">Current Password</Label>
-                              <Input id="current-password" type="password" />
-                           </div>
-                           <div className="space-y-2">
-                              <Label htmlFor="new-password">New Password</Label>
-                              <Input id="new-password" type="password" />
-                              <p className="text-xs text-muted-foreground">Password must be at least 8 characters and include uppercase, lowercase, numbers, and special characters.</p>
-                           </div>
-                           <div className="space-y-2">
-                              <Label htmlFor="confirm-password">Confirm New Password</Label>
-                              <Input id="confirm-password" type="password" />
-                           </div>
-                        </CardContent>
-                        <CardFooter>
-                           <Button type="submit" disabled={isUpdating}>
-                              {isUpdating ? "Updating..." : "Update Password"}
-                           </Button>
-                        </CardFooter>
-                     </form>
-                  </Card>
-               </TabsContent>
-
-               <TabsContent value="wallet" className="mt-6">
-                  <Card>
-                     <CardHeader>
-                        <CardTitle>Blockchain Wallet</CardTitle>
-                        <CardDescription>Connect your wallet for vote verification</CardDescription>
-                     </CardHeader>
-                     <CardContent className="space-y-4">
-                        {walletConnected ? (
-                           <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                              <div className="flex items-center space-x-4">
-                                 <div className="rounded-full bg-green-100 p-2">
-                                    <Wallet className="h-5 w-5 text-green-600" />
-                                 </div>
-                                 <div className="flex-1">
-                                    <h3 className="text-sm font-medium">Wallet Connected</h3>
-                                    <p className="text-xs text-muted-foreground break-all">{walletAddress}</p>
-                                 </div>
-                              </div>
-                           </div>
-                        ) : (
-                           <div className="rounded-lg border border-dashed border-gray-300 p-4 text-center">
-                              <Wallet className="mx-auto h-8 w-8 text-gray-400" />
-                              <h3 className="mt-2 text-sm font-medium text-gray-900">No wallet connected</h3>
-                              <p className="mt-1 text-xs text-gray-500">Connect your blockchain wallet to verify your votes and participate in elections.</p>
-                           </div>
-                        )}
-
-                        <div className="text-sm text-muted-foreground">
-                           <p>Your wallet is used to securely sign your votes and verify your identity on the blockchain without revealing your personal information.</p>
-                        </div>
-                     </CardContent>
-                     <CardFooter>
-                        {walletConnected ? (
-                           <Button variant="outline" onClick={handleDisconnectWallet}>
-                              Disconnect Wallet
-                           </Button>
-                        ) : (
-                           <Button onClick={handleConnectWallet} disabled={isConnectingWallet}>
-                              {isConnectingWallet ? "Connecting..." : "Connect Wallet"}
-                           </Button>
-                        )}
-                     </CardFooter>
-                  </Card>
-               </TabsContent>
-            </Tabs>
+      <div className="space-y-6">
+         <div>
+            <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
+            <p className="text-gray-600">Manage your account settings and preferences</p>
          </div>
-      </DashboardLayout>
+
+         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Profile Information */}
+            <Card>
+               <CardHeader>
+                  <CardTitle>Profile Information</CardTitle>
+                  <CardDescription>Update your personal information</CardDescription>
+               </CardHeader>
+               <CardContent>
+                  <form onSubmit={handleProfileUpdate} className="space-y-4">
+                     <div className="space-y-2">
+                        <Label htmlFor="fullName">Full Name</Label>
+                        <Input id="fullName" value={profileData.fullName} onChange={(e) => setProfileData((prev) => ({ ...prev, fullName: e.target.value }))} />
+                     </div>
+
+                     <div className="space-y-2">
+                        <Label htmlFor="email">Email Address</Label>
+                        <Input id="email" type="email" value={profileData.email} onChange={(e) => setProfileData((prev) => ({ ...prev, email: e.target.value }))} />
+                     </div>
+
+                     <div className="space-y-2">
+                        <Label htmlFor="phone">Phone Number</Label>
+                        <Input id="phone" value={profileData.phone} onChange={(e) => setProfileData((prev) => ({ ...prev, phone: e.target.value }))} />
+                     </div>
+
+                     <Button type="submit" className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white">
+                        Update Profile
+                     </Button>
+                  </form>
+               </CardContent>
+            </Card>
+
+            {/* Password Update */}
+            <Card>
+               <CardHeader>
+                  <CardTitle>Change Password</CardTitle>
+                  <CardDescription>Update your account password</CardDescription>
+               </CardHeader>
+               <CardContent>
+                  <form onSubmit={handlePasswordUpdate} className="space-y-4">
+                     <div className="space-y-2">
+                        <Label htmlFor="currentPassword">Current Password</Label>
+                        <div className="relative">
+                           <Input
+                              id="currentPassword"
+                              type={showCurrentPassword ? "text" : "password"}
+                              value={passwordData.currentPassword}
+                              onChange={(e) => setPasswordData((prev) => ({ ...prev, currentPassword: e.target.value }))}
+                           />
+                           <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                              onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                           >
+                              {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                           </Button>
+                        </div>
+                     </div>
+
+                     <div className="space-y-2">
+                        <Label htmlFor="newPassword">New Password</Label>
+                        <div className="relative">
+                           <Input
+                              id="newPassword"
+                              type={showNewPassword ? "text" : "password"}
+                              value={passwordData.newPassword}
+                              onChange={(e) => setPasswordData((prev) => ({ ...prev, newPassword: e.target.value }))}
+                           />
+                           <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                              onClick={() => setShowNewPassword(!showNewPassword)}
+                           >
+                              {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                           </Button>
+                        </div>
+
+                        {passwordData.newPassword && (
+                           <div className="space-y-1 mt-2">
+                              <p className="text-xs font-medium text-gray-700">Password Requirements:</p>
+                              {passwordRequirements.map((req, index) => (
+                                 <div key={index} className="flex items-center space-x-2 text-xs">
+                                    {req.met ? <Check className="h-3 w-3 text-green-500" /> : <X className="h-3 w-3 text-red-500" />}
+                                    <span className={req.met ? "text-green-600" : "text-red-600"}>{req.text}</span>
+                                 </div>
+                              ))}
+                           </div>
+                        )}
+                     </div>
+
+                     <div className="space-y-2">
+                        <Label htmlFor="confirmPassword">Confirm New Password</Label>
+                        <Input id="confirmPassword" type="password" value={passwordData.confirmPassword} onChange={(e) => setPasswordData((prev) => ({ ...prev, confirmPassword: e.target.value }))} />
+                     </div>
+
+                     <Button type="submit" className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white">
+                        Update Password
+                     </Button>
+                  </form>
+               </CardContent>
+            </Card>
+         </div>
+
+         {/* Wallet Connection */}
+         <Card>
+            <CardHeader>
+               <CardTitle className="flex items-center space-x-2">
+                  <Wallet className="h-5 w-5" />
+                  <span>Blockchain Wallet</span>
+               </CardTitle>
+               <CardDescription>Connect your wallet to participate in blockchain-based voting</CardDescription>
+            </CardHeader>
+            <CardContent>
+               <div className="flex items-center justify-between">
+                  <div className="space-y-1">
+                     <p className="font-medium">Wallet Status</p>
+                     <div className="flex items-center space-x-2">
+                        <Badge className={isWalletConnected ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}>{isWalletConnected ? "Connected" : "Not Connected"}</Badge>
+                        {isWalletConnected && <span className="text-sm text-gray-600">0x1234...5678</span>}
+                     </div>
+                  </div>
+                  <Button onClick={handleWalletConnection} variant={isWalletConnected ? "outline" : "default"} className={!isWalletConnected ? "bg-[#00A9FF] hover:bg-[#0088CC] text-white" : ""}>
+                     {isWalletConnected ? "Disconnect" : "Connect Wallet"}
+                  </Button>
+               </div>
+
+               {isWalletConnected && (
+                  <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                     <p className="text-sm text-green-800">✓ Your wallet is connected and ready for secure voting transactions</p>
+                  </div>
+               )}
+            </CardContent>
+         </Card>
+
+         {/* Account Actions */}
+         <Card>
+            <CardHeader>
+               <CardTitle className="text-red-600">Danger Zone</CardTitle>
+               <CardDescription>Irreversible account actions</CardDescription>
+            </CardHeader>
+            <CardContent>
+               <div className="space-y-4">
+                  <Separator />
+                  <div className="flex items-center justify-between">
+                     <div>
+                        <h3 className="font-medium text-gray-900">Delete Account</h3>
+                        <p className="text-sm text-gray-600">Permanently delete your account and all data</p>
+                     </div>
+                     <Button variant="destructive">Delete Account</Button>
+                  </div>
+               </div>
+            </CardContent>
+         </Card>
+      </div>
    );
 }

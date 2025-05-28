@@ -1,102 +1,160 @@
 "use client";
 
-import { useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import type React from "react";
 
+import { useState } from "react";
+import Link from "next/link";
+import { ArrowLeft, Mail, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { AuthFormWrapper } from "@/components/auth/auth-form-wrapper";
-
-const forgotPasswordFormSchema = z.object({
-   email: z.string().email({
-      message: "Please enter a valid email address.",
-   }),
-});
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function ForgotPasswordPage() {
+   const [email, setEmail] = useState("");
    const [isLoading, setIsLoading] = useState(false);
-   const [isSubmitted, setIsSubmitted] = useState(false);
+   const [isEmailSent, setIsEmailSent] = useState(false);
 
-   const form = useForm<z.infer<typeof forgotPasswordFormSchema>>({
-      resolver: zodResolver(forgotPasswordFormSchema),
-      defaultValues: {
-         email: "",
-      },
-   });
+   const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setIsLoading(true);
 
-   async function onSubmit(values: z.infer<typeof forgotPasswordFormSchema>) {
-      try {
-         setIsLoading(true);
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
-         // This would be where you'd handle the password reset request
-         console.log(values);
+      setIsLoading(false);
+      setIsEmailSent(true);
+   };
 
-         // Simulate API call delay
-         await new Promise((resolve) => setTimeout(resolve, 1000));
+   if (isEmailSent) {
+      return (
+         <div className="min-h-screen flex">
+            {/* Image Section - Left Side */}
+            <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#89CFF3] to-[#A0E9FF]">
+               <div className="flex items-center justify-center w-full p-8">
+                  <div className="text-center space-y-6">
+                     <img
+                        src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                        alt="Email sent illustration"
+                        className="rounded-lg shadow-2xl max-w-md w-full"
+                     />
+                     <div className="text-white space-y-2">
+                        <h2 className="text-2xl font-bold">Check Your Email</h2>
+                        <p className="text-lg opacity-90">We've sent you a secure link to reset your password.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
 
-         setIsSubmitted(true);
-      } catch (error) {
-         console.error("Password reset error:", error);
-      } finally {
-         setIsLoading(false);
-      }
+            {/* Success Message - Right Side */}
+            <div className="flex-1 flex items-center justify-center p-8 bg-white">
+               <div className="w-full max-w-md space-y-6">
+                  <Card>
+                     <CardHeader className="text-center">
+                        <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                           <CheckCircle className="h-6 w-6 text-green-600" />
+                        </div>
+                        <CardTitle className="text-xl">Email Sent Successfully</CardTitle>
+                        <CardDescription>
+                           We've sent a password reset link to <strong>{email}</strong>
+                        </CardDescription>
+                     </CardHeader>
+                     <CardContent className="space-y-4">
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                           <div className="flex items-start space-x-3">
+                              <Mail className="h-5 w-5 text-blue-600 mt-0.5" />
+                              <div className="text-sm text-blue-800">
+                                 <p className="font-medium mb-1">Next Steps:</p>
+                                 <ul className="space-y-1 text-blue-700">
+                                    <li>• Check your email inbox</li>
+                                    <li>• Click the reset link (expires in 1 hour)</li>
+                                    <li>• Create a new password</li>
+                                    <li>• Sign in with your new password</li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div className="text-center space-y-3">
+                           <p className="text-sm text-gray-600">Didn't receive the email? Check your spam folder or</p>
+                           <Button variant="outline" onClick={() => setIsEmailSent(false)} className="text-[#00A9FF] border-[#00A9FF] hover:bg-[#00A9FF] hover:text-white">
+                              Try Again
+                           </Button>
+                        </div>
+
+                        <div className="pt-4 border-t">
+                           <Link href="/signin">
+                              <Button variant="ghost" className="w-full text-gray-600 hover:text-gray-800">
+                                 <ArrowLeft className="mr-2 h-4 w-4" />
+                                 Back to Sign In
+                              </Button>
+                           </Link>
+                        </div>
+                     </CardContent>
+                  </Card>
+               </div>
+            </div>
+         </div>
+      );
    }
 
    return (
-      <AuthFormWrapper title="Reset your password" description="Enter your email address and we'll send you a link to reset your password." backLink={{ href: "/sign-in", label: "Back to sign in" }}>
-         {isSubmitted ? (
-            <div className="space-y-4 text-center">
-               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary-lightest">
-                  <svg
-                     xmlns="http://www.w3.org/2000/svg"
-                     width="24"
-                     height="24"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     strokeWidth="2"
-                     strokeLinecap="round"
-                     strokeLinejoin="round"
-                     className="h-8 w-8 text-primary"
-                  >
-                     <path d="M22 2L11 13"></path>
-                     <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
-                  </svg>
+      <div className="min-h-screen flex">
+         {/* Form Section - Left Side */}
+         <div className="flex-1 flex items-center justify-center p-8 bg-white">
+            <div className="w-full max-w-md space-y-6">
+               <div className="text-center space-y-2">
+                  <h1 className="text-3xl font-bold text-gray-900">Reset Password</h1>
+                  <p className="text-gray-600">Enter your email to receive a reset link</p>
                </div>
-               <h3 className="text-xl font-semibold">Check your email</h3>
-               <p className="text-muted-foreground">
-                  We&apos;ve sent a password reset link to <span className="font-medium">{form.getValues().email}</span>. Please check your inbox and follow the instructions to reset your password.
-               </p>
-               <Button variant="outline" className="mt-4" onClick={() => setIsSubmitted(false)}>
-                  Go back
-               </Button>
-            </div>
-         ) : (
-            <Form {...form}>
-               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                     control={form.control}
-                     name="email"
-                     render={({ field }) => (
-                        <FormItem>
-                           <FormLabel>Email</FormLabel>
-                           <FormControl>
-                              <Input type="email" placeholder="john.doe@example.com" {...field} />
-                           </FormControl>
-                           <FormMessage />
-                        </FormItem>
-                     )}
-                  />
 
-                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isLoading}>
-                     {isLoading ? "Sending..." : "Send reset link"}
-                  </Button>
-               </form>
-            </Form>
-         )}
-      </AuthFormWrapper>
+               <Card>
+                  <CardHeader>
+                     <CardTitle className="text-xl text-center">Forgot Your Password?</CardTitle>
+                     <CardDescription className="text-center">No worries! Enter your email address and we'll send you a link to reset your password.</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                     <form onSubmit={handleSubmit} className="space-y-4">
+                        <div className="space-y-2">
+                           <Label htmlFor="email">Email Address</Label>
+                           <Input id="email" type="email" placeholder="Enter your email address" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                           <p className="text-xs text-gray-500">We'll send a password reset link to this email address</p>
+                        </div>
+
+                        <Button type="submit" className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white" disabled={isLoading}>
+                           {isLoading ? "Sending Reset Link..." : "Send Reset Link"}
+                        </Button>
+                     </form>
+
+                     <div className="mt-6 text-center">
+                        <Link href="/signin">
+                           <Button variant="ghost" className="text-gray-600 hover:text-gray-800">
+                              <ArrowLeft className="mr-2 h-4 w-4" />
+                              Back to Sign In
+                           </Button>
+                        </Link>
+                     </div>
+                  </CardContent>
+               </Card>
+            </div>
+         </div>
+
+         {/* Image Section - Right Side */}
+         <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#CDF5FD] to-[#89CFF3]">
+            <div className="flex items-center justify-center w-full p-8">
+               <div className="text-center space-y-6">
+                  <img
+                     src="https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                     alt="Password security illustration"
+                     className="rounded-lg shadow-2xl max-w-md w-full"
+                  />
+                  <div className="text-gray-800 space-y-2">
+                     <h2 className="text-2xl font-bold">Secure Account Recovery</h2>
+                     <p className="text-lg">Your account security is our priority. We'll help you regain access safely and securely.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
    );
 }
