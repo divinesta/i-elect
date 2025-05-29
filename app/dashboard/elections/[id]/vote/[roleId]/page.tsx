@@ -118,10 +118,10 @@ export default function RoleVotingPage() {
                                     const parent = target.parentElement;
                                     if (parent) {
                                        parent.innerHTML = `
-                            <div class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center">
+                           <div class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center">
                               <span class="text-2xl font-bold text-white">${candidate.initials}</span>
-                            </div>
-                          `;
+                           </div>
+                        `;
                                     }
                                  }}
                               />

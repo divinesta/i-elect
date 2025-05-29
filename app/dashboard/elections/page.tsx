@@ -82,9 +82,11 @@ export default function ElectionsPage() {
                <h1 className="text-3xl font-bold text-gray-900">Elections</h1>
                <p className="text-gray-600">Manage your elections and participate in voting</p>
             </div>
-            <Button className="bg-[#00A9FF] hover:bg-[#0088CC] text-white">
-               <Plus className="h-4 w-4 mr-2" />
-               Create Election
+            <Button className="bg-[#00A9FF] hover:bg-[#0088CC] text-white" asChild>
+               <Link href="/dashboard/elections/create">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Create Election
+               </Link>
             </Button>
          </div>
 
@@ -148,9 +150,11 @@ export default function ElectionsPage() {
                         <Vote className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                         <h3 className="text-lg font-medium text-gray-900 mb-2">No elections yet</h3>
                         <p className="text-gray-600 mb-4">Create your first election to get started</p>
-                        <Button className="bg-[#00A9FF] hover:bg-[#0088CC] text-white">
-                           <Plus className="h-4 w-4 mr-2" />
-                           Create Election
+                        <Button className="bg-[#00A9FF] hover:bg-[#0088CC] text-white" asChild>
+                           <Link href="/dashboard/elections/create">
+                              <Plus className="h-4 w-4 mr-2" />
+                              Create Election
+                           </Link>
                         </Button>
                      </CardContent>
                   </Card>
