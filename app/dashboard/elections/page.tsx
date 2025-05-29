@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar, Users, Settings, Eye, Vote, Plus } from "lucide-react";
+import Link from "next/link";
 
 export default function ElectionsPage() {
    const [activeTab, setActiveTab] = useState("my-elections");
@@ -124,13 +125,17 @@ export default function ElectionsPage() {
                               </div>
 
                               <div className="flex space-x-2">
-                                 <Button size="sm" variant="outline" className="flex-1">
-                                    <Settings className="h-4 w-4 mr-1" />
-                                    Manage
+                                 <Button size="sm" variant="outline" className="flex-1" asChild>
+                                    <Link href={`/dashboard/elections/${election.id}/manage`}>
+                                       <Settings className="h-4 w-4 mr-1" />
+                                       Manage
+                                    </Link>
                                  </Button>
-                                 <Button size="sm" variant="outline" className="flex-1">
-                                    <Eye className="h-4 w-4 mr-1" />
-                                    Results
+                                 <Button size="sm" variant="outline" className="flex-1" asChild>
+                                    <Link href={`/dashboard/elections/${election.id}/results`}>
+                                       <Eye className="h-4 w-4 mr-1" />
+                                       Results
+                                    </Link>
                                  </Button>
                               </div>
                            </CardContent>
@@ -178,15 +183,19 @@ export default function ElectionsPage() {
                                     <Badge className="bg-green-100 text-green-800">✓ Vote Submitted</Badge>
                                  </div>
                               ) : (
-                                 <Button className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white">
-                                    <Vote className="h-4 w-4 mr-2" />
-                                    Vote Now
+                                 <Button className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white" asChild>
+                                    <Link href={`/dashboard/elections/${election.id}/vote`}>
+                                       <Vote className="h-4 w-4 mr-2" />
+                                       Vote Now
+                                    </Link>
                                  </Button>
                               )}
 
-                              <Button size="sm" variant="outline" className="w-full">
-                                 <Eye className="h-4 w-4 mr-1" />
-                                 View Details
+                              <Button size="sm" variant="outline" className="w-full" asChild>
+                                 <Link href={`/dashboard/elections/${election.id}/results`}>
+                                    <Eye className="h-4 w-4 mr-1" />
+                                    View Details
+                                 </Link>
                               </Button>
                            </CardContent>
                         </Card>

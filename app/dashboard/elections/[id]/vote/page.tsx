@@ -1,149 +1,170 @@
 "use client";
 
-import { useState, use } from "react";
-import { useRouter } from "next/navigation";
-import { CheckCircle, Clock, Info } from "lucide-react";
-
-import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Clock, Users, CheckCircle, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
-export default function VotePage(props: { params: Promise<{ id: string }> }) {
-   const params = use(props.params);
-   const router = useRouter();
-   const [selectedCandidate, setSelectedCandidate] = useState<string | null>(null);
-   const [isVoting, setIsVoting] = useState(false);
-   const [isVoted, setIsVoted] = useState(false);
-   const [voteId, setVoteId] = useState("");
+export default function VotingPage() {
+   const params = useParams();
+   const electionId = params.id;
 
-   // Sample data - in a real app, this would come from an API
+   const [timeLeft, setTimeLeft] = useState({
+      days: 2,
+      hours: 5,
+      minutes: 32,
+      seconds: 45,
+   });
+
    const election = {
-      id: Number.parseInt(params.id),
-      name: "City Council Election",
-      description: "Vote for your local city council representatives",
-      startDate: "2025-05-20",
-      endDate: "2025-05-27",
-      candidates: [
-         { id: "1", name: "Jane Smith", party: "Progressive Party", description: "Focus on environmental initiatives" },
-         { id: "2", name: "John Johnson", party: "Community First", description: "Emphasis on local business support" },
-         { id: "3", name: "Maria Garcia", party: "Future Forward", description: "Advocate for education reform" },
-         { id: "4", name: "Robert Lee", party: "Independent", description: "Platform of fiscal responsibility" },
-      ],
+      name: "Student Council Election 2024",
+      description: "Annual student council election for academic year 2024-2025",
+      endDate: "2024-02-07T23:59:59",
    };
 
-   // Calculate time remaining
-   const endDate = new Date(election.endDate);
-   const now = new Date();
-   const timeRemaining = endDate.getTime() - now.getTime();
-   const daysRemaining = Math.ceil(timeRemaining / (1000 * 60 * 60 * 24));
+   const roles = [
+      {
+         id: 1,
+         name: "President",
+         description: "Chief Executive Officer of the Association",
+         candidateCount: 3,
+         hasVoted: false,
+      },
+      {
+         id: 2,
+         name: "Vice President",
+         description: "Deputy Chief Executive Officer",
+         candidateCount: 2,
+         hasVoted: true,
+      },
+      {
+         id: 3,
+         name: "Secretary General",
+         description: "Administrative Head and Record Keeper",
+         candidateCount: 4,
+         hasVoted: false,
+      },
+      {
+         id: 4,
+         name: "Treasurer",
+         description: "Financial Officer and Budget Manager",
+         candidateCount: 2,
+         hasVoted: false,
+      },
+      {
+         id: 5,
+         name: "Public Relations Officer",
+         description: "Communications and External Relations",
+         candidateCount: 3,
+         hasVoted: true,
+      },
+      {
+         id: 6,
+         name: "Board Member",
+         description: "Advisory Board Representatives (3 positions)",
+         candidateCount: 8,
+         hasVoted: false,
+      },
+   ];
 
-   const handleVote = () => {
-      if (!selectedCandidate) return;
+   // Countdown timer effect
+   useEffect(() => {
+      const timer = setInterval(() => {
+         setTimeLeft((prev) => {
+            if (prev.seconds > 0) {
+               return { ...prev, seconds: prev.seconds - 1 };
+            } else if (prev.minutes > 0) {
+               return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+            } else if (prev.hours > 0) {
+               return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
+            } else if (prev.days > 0) {
+               return { days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
+            }
+            return prev;
+         });
+      }, 1000);
 
-      setIsVoting(true);
-
-      // Simulate blockchain transaction
-      setTimeout(() => {
-         setIsVoting(false);
-         setIsVoted(true);
-         setVoteId("0x" + Math.random().toString(16).slice(2) + Math.random().toString(16).slice(2));
-      }, 2000);
-   };
-
-   const handleDone = () => {
-      router.push("/dashboard/elections");
-   };
+      return () => clearInterval(timer);
+   }, []);
 
    return (
-      <DashboardLayout>
-         <div className="flex flex-col space-y-6">
-            <div>
-               <h1 className="text-2xl font-bold tracking-tight">{election.name}</h1>
-               <p className="text-muted-foreground">{election.description}</p>
+      <div className="min-h-screen bg-gray-50 p-6">
+         <div className="max-w-6xl mx-auto space-y-8">
+            {/* Header */}
+            <div className="text-center space-y-4">
+               <h1 className="text-4xl font-bold text-gray-900">{election.name}</h1>
+               <p className="text-lg text-gray-600">{election.description}</p>
+
+               {/* Countdown Timer */}
+               <div className="inline-flex items-center space-x-2 bg-orange-50 border border-orange-200 rounded-full px-4 py-2">
+                  <Clock className="h-4 w-4 text-orange-600" />
+                  <span className="text-sm font-medium text-orange-800">
+                     {timeLeft.days} days, {timeLeft.hours} hours remaining
+                  </span>
+               </div>
             </div>
 
-            {!isVoted ? (
-               <>
-                  <Card>
-                     <CardHeader>
-                        <div className="flex items-center justify-between">
-                           <CardTitle>Cast Your Vote</CardTitle>
-                           <div className="flex items-center space-x-1 rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-800">
-                              <Clock className="mr-1 h-3 w-3" />
-                              <span>{daysRemaining} days remaining</span>
-                           </div>
-                        </div>
-                        <CardDescription>Select one candidate from the list below</CardDescription>
-                     </CardHeader>
-                     <CardContent>
-                        <Alert className="mb-4">
-                           <Info className="h-4 w-4" />
-                           <AlertTitle>Important</AlertTitle>
-                           <AlertDescription>Your vote is anonymous and secure. Once submitted, you cannot change your vote.</AlertDescription>
-                        </Alert>
+            {/* Available Positions */}
+            <div className="space-y-6">
+               <div>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Available Positions</h2>
+                  <p className="text-gray-600">Click on any position to cast your vote</p>
+               </div>
 
-                        <RadioGroup value={selectedCandidate || ""} onValueChange={setSelectedCandidate}>
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {roles.map((role) => (
+                     <Card
+                        key={role.id}
+                        className={`group hover:shadow-lg transition-all duration-300 cursor-pointer border-2 ${
+                           role.hasVoted ? "bg-green-50 border-green-200" : "bg-white border-gray-200 hover:border-blue-300"
+                        }`}
+                     >
+                        <CardContent className="p-6">
                            <div className="space-y-4">
-                              {election.candidates.map((candidate) => (
-                                 <div key={candidate.id} className={`rounded-lg border p-4 ${selectedCandidate === candidate.id ? "border-blue-500 bg-blue-50" : "border-gray-200"}`}>
-                                    <div className="flex items-start space-x-3">
-                                       <RadioGroupItem value={candidate.id} id={`candidate-${candidate.id}`} className="mt-1" />
-                                       <div className="flex-1">
-                                          <Label htmlFor={`candidate-${candidate.id}`} className="text-base font-medium cursor-pointer">
-                                             {candidate.name}
-                                          </Label>
-                                          <p className="text-sm font-medium text-blue-600">{candidate.party}</p>
-                                          <p className="mt-1 text-sm text-gray-500">{candidate.description}</p>
-                                       </div>
-                                    </div>
+                              <div className="flex items-start justify-between">
+                                 <div className="space-y-2">
+                                    <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{role.name}</h3>
+                                    <p className="text-sm text-gray-600">{role.description}</p>
                                  </div>
-                              ))}
-                           </div>
-                        </RadioGroup>
-                     </CardContent>
-                     <CardFooter className="flex justify-between">
-                        <Button variant="outline" onClick={() => router.push("/dashboard/elections")}>
-                           Cancel
-                        </Button>
-                        <Button onClick={handleVote} disabled={!selectedCandidate || isVoting}>
-                           {isVoting ? "Processing Vote..." : "Confirm Vote"}
-                        </Button>
-                     </CardFooter>
-                  </Card>
-               </>
-            ) : (
-               <Card>
-                  <CardHeader>
-                     <CardTitle className="flex items-center text-green-600">
-                        <CheckCircle className="mr-2 h-5 w-5" />
-                        Vote Recorded Successfully
-                     </CardTitle>
-                     <CardDescription>Your vote has been securely recorded on the blockchain</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                     <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                        <h3 className="text-sm font-medium">Your Vote ID</h3>
-                        <p className="mt-1 break-all text-xs font-mono text-gray-600">{voteId}</p>
-                        <p className="mt-2 text-xs text-gray-500">Save this ID to verify your vote later. It will also be available in your voting history.</p>
-                     </div>
+                                 <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
+                              </div>
 
-                     <Alert>
-                        <Info className="h-4 w-4" />
-                        <AlertTitle>Privacy Protected</AlertTitle>
-                        <AlertDescription>Your identity remains anonymous. Only you can link this vote ID to your account.</AlertDescription>
-                     </Alert>
-                  </CardContent>
-                  <CardFooter>
-                     <Button onClick={handleDone} className="w-full">
-                        Done
-                     </Button>
-                  </CardFooter>
-               </Card>
-            )}
+                              <div className="flex items-center justify-between">
+                                 <div className="flex items-center space-x-2 text-sm text-gray-600">
+                                    <Users className="h-4 w-4" />
+                                    <span>{role.candidateCount} candidates</span>
+                                 </div>
+
+                                 {role.hasVoted ? (
+                                    <Badge className="bg-green-100 text-green-800 border-green-200">
+                                       <CheckCircle className="h-3 w-3 mr-1" />
+                                       Voted
+                                    </Badge>
+                                 ) : (
+                                    <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white" asChild>
+                                       <Link href={`/dashboard/elections/${electionId}/vote/${role.id}`}>Vote Now</Link>
+                                    </Button>
+                                 )}
+                              </div>
+                           </div>
+                        </CardContent>
+                     </Card>
+                  ))}
+               </div>
+            </div>
+
+            {/* Footer */}
+            <div className="text-center space-y-2 pt-8 border-t">
+               <div className="flex items-center justify-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium text-gray-700">Election is Live</span>
+               </div>
+               <p className="text-sm text-gray-600">Your votes are secured by blockchain technology and cannot be altered once cast.</p>
+            </div>
          </div>
-      </DashboardLayout>
+      </div>
    );
 }
