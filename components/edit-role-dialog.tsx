@@ -30,7 +30,7 @@ export function EditRoleDialog({ role, open, onOpenChange, onSave }: EditRoleDia
          <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
                <DialogTitle>Edit Role</DialogTitle>
-               <DialogDescription>Make changes to the role details here. Click save when you're done.</DialogDescription>
+               <DialogDescription>Make changes to the role details here. Click save when you&apos;re done.</DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
                <div className="space-y-2">

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Receipt } from "lucide-react";
@@ -54,7 +55,7 @@ export default function VoteSuccessPage() {
             <Card className="border-2 border-green-200 bg-green-50">
                <CardContent className="p-6">
                   <div className="flex items-center space-x-4">
-                     <img src={candidate.image || "/placeholder.svg"} alt={candidate.name} className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm" />
+                     <Image src={candidate.image || "/placeholder.svg"} alt={candidate.name} width={48} height={48} className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm" />
                      <div className="text-left">
                         <h3 className="font-bold text-gray-900">{candidate.name}</h3>
                         <p className="text-sm text-gray-600">for {candidate.role}</p>

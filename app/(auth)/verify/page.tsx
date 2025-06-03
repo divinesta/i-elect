@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,6 +10,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle, AlertCircle } from "lucide-react"
 
 export default function VerifyPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#CDF5FD] to-[#A0E9FF]"><div className="text-center"><p>Loading verification page...</p></div></div>}>
+      <VerifyContent />
+    </Suspense>
+  )
+}
+
+function VerifyContent() {
   const searchParams = useSearchParams()
   const phoneNumber = searchParams.get("phone") || ""
 
@@ -149,7 +157,7 @@ export default function VerifyPage() {
             </form>
 
             <div className="text-center space-y-2">
-              <p className="text-sm text-gray-600">Didn't receive the code?</p>
+              <p className="text-sm text-gray-600">Didn&apos;t receive the code?</p>
               <Button
                 variant="ghost"
                 onClick={handleResendCode}

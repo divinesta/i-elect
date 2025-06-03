@@ -5,6 +5,7 @@ import type React from "react";
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Eye, EyeOff, Check, X, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -177,7 +178,7 @@ export default function ResetPasswordPage() {
                                  ) : (
                                     <>
                                        <X className="h-3 w-3 text-red-500" />
-                                       <span className="text-red-600">Passwords don't match</span>
+                                       <span className="text-red-600">Passwords don&apos;t match</span>
                                     </>
                                  )}
                               </div>
@@ -197,9 +198,11 @@ export default function ResetPasswordPage() {
          <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#A0E9FF] to-[#CDF5FD]">
             <div className="flex items-center justify-center w-full p-8">
                <div className="text-center space-y-6">
-                  <img
+                  <Image
                      src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                      alt="Secure password illustration"
+                     width={1000}
+                     height={667}
                      className="rounded-lg shadow-2xl max-w-md w-full"
                   />
                   <div className="text-gray-800 space-y-2">

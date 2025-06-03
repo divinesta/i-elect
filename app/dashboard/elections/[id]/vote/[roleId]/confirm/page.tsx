@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,7 +16,7 @@ export default function ConfirmVotePage() {
    const { id: electionId, roleId } = params;
    const candidateId = searchParams.get("candidate");
 
-   const [timeLeft, setTimeLeft] = useState({
+   const [timeLeft] = useState({
       days: 2,
       hours: 5,
       minutes: 32,
@@ -81,7 +82,7 @@ export default function ConfirmVotePage() {
             <Card className="border-2 border-blue-200 bg-blue-50">
                <CardContent className="p-6">
                   <div className="flex items-center space-x-4">
-                     <img src={candidate.image || "/placeholder.svg"} alt={candidate.name} className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm" />
+                     <Image src={candidate.image || "/placeholder.svg"} alt={candidate.name} width={64} height={64} className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm" />
                      <div className="flex-1">
                         <div className="flex items-center space-x-2">
                            <h3 className="text-xl font-bold text-gray-900">{candidate.name}</h3>
@@ -95,7 +96,7 @@ export default function ConfirmVotePage() {
                      </div>
                   </div>
 
-                  <blockquote className="mt-4 text-sm italic text-gray-700 border-l-4 border-blue-300 pl-4 bg-white/50 py-2 rounded-r">"{candidate.quote}"</blockquote>
+                  <blockquote className="mt-4 text-sm italic text-gray-700 border-l-4 border-blue-300 pl-4 bg-white/50 py-2 rounded-r">&quot;{candidate.quote}&quot;</blockquote>
 
                   <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
                      <div>

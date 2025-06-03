@@ -4,6 +4,7 @@ import type React from "react";
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Eye, EyeOff, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -72,7 +73,7 @@ export default function SignUpPage() {
                         <div className="space-y-2">
                            <Label htmlFor="phone">Phone Number</Label>
                            <Input id="phone" type="tel" placeholder="+1 (555) 123-4567" value={formData.phone} onChange={(e) => handleInputChange("phone", e.target.value)} required />
-                           <p className="text-xs text-gray-500">We'll send a verification code to this number</p>
+                           <p className="text-xs text-gray-500">We&apos;ll send a verification code to this number</p>
                         </div>
 
                         <div className="space-y-2">
@@ -124,9 +125,11 @@ export default function SignUpPage() {
          <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#00A9FF] to-[#89CFF3]">
             <div className="flex items-center justify-center w-full p-8">
                <div className="text-center space-y-6">
-                  <img
+                  <Image
                      src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                      alt="Democratic voting process"
+                     width={1000}
+                     height={667}
                      className="rounded-lg shadow-2xl max-w-md w-full"
                   />
                   <div className="text-white space-y-2">

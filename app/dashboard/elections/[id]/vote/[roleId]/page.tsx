@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -107,7 +108,7 @@ export default function RoleVotingPage() {
                         {/* Image or Initials */}
                         <div className="relative h-48 bg-gradient-to-b from-gray-100 to-gray-200 flex items-center justify-center">
                            {candidate.image ? (
-                              <img
+                              <Image
                                  src={candidate.image || "/placeholder.svg"}
                                  alt={candidate.name}
                                  className="w-full h-full object-cover"
@@ -154,7 +155,7 @@ export default function RoleVotingPage() {
                               </div>
                            </div>
 
-                           <blockquote className="text-sm italic text-blue-700 border-l-4 border-blue-200 pl-3 py-2 bg-blue-50 rounded-r">"{candidate.quote}"</blockquote>
+                           <blockquote className="text-sm italic text-blue-700 border-l-4 border-blue-200 pl-3 py-2 bg-blue-50 rounded-r">&quot;{candidate.quote}&quot;</blockquote>
 
                            <Button
                               className={`w-full transition-all duration-200 ${

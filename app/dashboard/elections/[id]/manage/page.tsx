@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useParams } from "next/navigation";
+// import { useParams } from "next/navigation";
+import Image from "next/image";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,8 +17,8 @@ import { Edit, Trash2 } from "lucide-react";
 import { EditRoleDialog } from "@/components/edit-role-dialog";
 
 export default function ManageElectionPage() {
-   const params = useParams();
-   const electionId = params.id;
+   // const params = useParams();
+   // const electionId = params.id;
 
    const [election, setElection] = useState({
       name: "Student Council Election 2024",
@@ -332,10 +333,14 @@ export default function ManageElectionPage() {
                               <div className="space-y-2">
                                  <Label htmlFor="candidatePhoto">Photo (Max 2MB, JPG/PNG)</Label>
                                  <div className="flex items-center space-x-2">
-                                    <Input id="candidatePhoto" type="file" accept="image/jpeg,image/png" />
-                                    <Button variant="outline" size="sm">
-                                       <Upload className="h-4 w-4" />
-                                    </Button>
+                                    <Input
+                                       id="candidatePhoto"
+                                       type="file"
+                                       accept="image/*"
+                                       className="hidden"
+                                       // onChange={(e) => handlePhotoUpload(e, setNewCandidate)}
+                                    />
+                                    {newCandidate.photo && <Image src={newCandidate.photo} alt="Candidate photo" width={64} height={64} className="h-16 w-16 rounded-full object-cover" />}
                                  </div>
                               </div>
 
@@ -359,7 +364,7 @@ export default function ManageElectionPage() {
                                           <p className="text-sm text-gray-600">{newCandidate.course || "Course"}</p>
                                           <p className="text-xs text-gray-500">{newCandidate.university || "University"}</p>
                                        </div>
-                                       <p className="text-sm italic text-gray-700">"{newCandidate.quote || "Campaign quote will appear here"}"</p>
+                                       <p className="text-sm italic text-gray-700">&quot;{newCandidate.quote || "Campaign quote will appear here"}&quot;</p>
                                     </div>
                                  </CardContent>
                               </Card>
@@ -373,7 +378,7 @@ export default function ManageElectionPage() {
                         <Card key={candidate.id} className="hover:shadow-lg transition-shadow">
                            <CardContent className="p-4">
                               <div className="text-center space-y-3">
-                                 <img src={candidate.photo || "/placeholder.svg"} alt={candidate.name} className="w-20 h-20 rounded-full mx-auto object-cover" />
+                                 <Image src={candidate.photo || "/placeholder.svg"} alt={candidate.name} width={80} height={80} className="w-20 h-20 rounded-full mx-auto object-cover" />
                                  <div>
                                     <h3 className="font-semibold">{candidate.name}</h3>
                                     <p className="text-sm text-gray-600">{candidate.course}</p>
@@ -382,7 +387,7 @@ export default function ManageElectionPage() {
                                        {roles.find((r) => r.id.toString() === candidate.roleId.toString())?.name}
                                     </Badge>
                                  </div>
-                                 <p className="text-sm italic text-gray-700">"{candidate.quote}"</p>
+                                 <p className="text-sm italic text-gray-700">&quot;{candidate.quote}&quot;</p>
                                  <Button variant="outline" size="sm" onClick={() => handleDeleteCandidate(candidate.id)}>
                                     <X className="h-4 w-4" />
                                  </Button>

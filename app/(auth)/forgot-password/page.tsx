@@ -4,6 +4,7 @@ import type React from "react";
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Mail, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,14 +34,16 @@ export default function ForgotPasswordPage() {
             <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#89CFF3] to-[#A0E9FF]">
                <div className="flex items-center justify-center w-full p-8">
                   <div className="text-center space-y-6">
-                     <img
+                     <Image
                         src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                         alt="Email sent illustration"
+                        width={1000}
+                        height={667}
                         className="rounded-lg shadow-2xl max-w-md w-full"
                      />
                      <div className="text-white space-y-2">
                         <h2 className="text-2xl font-bold">Check Your Email</h2>
-                        <p className="text-lg opacity-90">We've sent you a secure link to reset your password.</p>
+                        <p className="text-lg opacity-90">We&apos;ve sent you a secure link to reset your password.</p>
                      </div>
                   </div>
                </div>
@@ -56,7 +59,7 @@ export default function ForgotPasswordPage() {
                         </div>
                         <CardTitle className="text-xl">Email Sent Successfully</CardTitle>
                         <CardDescription>
-                           We've sent a password reset link to <strong>{email}</strong>
+                           We&apos;ve sent a password reset link to <strong>{email}</strong>
                         </CardDescription>
                      </CardHeader>
                      <CardContent className="space-y-4">
@@ -76,7 +79,7 @@ export default function ForgotPasswordPage() {
                         </div>
 
                         <div className="text-center space-y-3">
-                           <p className="text-sm text-gray-600">Didn't receive the email? Check your spam folder or</p>
+                           <p className="text-sm text-gray-600">Didn&apos;t receive the email? Check your spam folder or</p>
                            <Button variant="outline" onClick={() => setIsEmailSent(false)} className="text-[#00A9FF] border-[#00A9FF] hover:bg-[#00A9FF] hover:text-white">
                               Try Again
                            </Button>
@@ -111,14 +114,14 @@ export default function ForgotPasswordPage() {
                <Card>
                   <CardHeader>
                      <CardTitle className="text-xl text-center">Forgot Your Password?</CardTitle>
-                     <CardDescription className="text-center">No worries! Enter your email address and we'll send you a link to reset your password.</CardDescription>
+                     <CardDescription className="text-center">No worries! Enter your email address and we&apos;ll send you a link to reset your password.</CardDescription>
                   </CardHeader>
                   <CardContent>
                      <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="space-y-2">
                            <Label htmlFor="email">Email Address</Label>
                            <Input id="email" type="email" placeholder="Enter your email address" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                           <p className="text-xs text-gray-500">We'll send a password reset link to this email address</p>
+                           <p className="text-xs text-gray-500">We&apos;ll send a password reset link to this email address</p>
                         </div>
 
                         <Button type="submit" className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white" disabled={isLoading}>
@@ -143,14 +146,16 @@ export default function ForgotPasswordPage() {
          <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#CDF5FD] to-[#89CFF3]">
             <div className="flex items-center justify-center w-full p-8">
                <div className="text-center space-y-6">
-                  <img
+                  <Image
                      src="https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                      alt="Password security illustration"
+                     width={1000}
+                     height={667}
                      className="rounded-lg shadow-2xl max-w-md w-full"
                   />
                   <div className="text-gray-800 space-y-2">
                      <h2 className="text-2xl font-bold">Secure Account Recovery</h2>
-                     <p className="text-lg">Your account security is our priority. We'll help you regain access safely and securely.</p>
+                     <p className="text-lg">Your account security is our priority. We&apos;ll help you regain access safely and securely.</p>
                   </div>
                </div>
             </div>

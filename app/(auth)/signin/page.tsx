@@ -4,6 +4,7 @@ import type React from "react";
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,9 +39,11 @@ export default function SignInPage() {
          <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#A0E9FF] to-[#CDF5FD]">
             <div className="flex items-center justify-center w-full p-8">
                <div className="text-center space-y-6">
-                  <img
+                  <Image
                      src="https://images.unsplash.com/photo-1541872705-1f73c6400ec9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                      alt="Secure voting technology"
+                     width={1000}
+                     height={667}
                      className="rounded-lg shadow-2xl max-w-md w-full"
                   />
                   <div className="text-gray-800 space-y-2">
@@ -128,7 +131,7 @@ export default function SignInPage() {
                      </Button>
 
                      <div className="mt-4 text-center text-sm">
-                        <span className="text-gray-600">Don't have an account? </span>
+                        <span className="text-gray-600">Don&apos;t have an account? </span>
                         <Link href="/signup" className="text-[#00A9FF] hover:underline font-medium">
                            Sign Up
                         </Link>
