@@ -26,7 +26,7 @@ export function DashboardHeader() {
             <DropdownMenu>
                <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="flex items-center space-x-2 h-9 px-3">
-                     <div className="w-7 h-7 bg-gradient-to-br from-[#00A9FF] to-[#89CFF3] rounded-full flex items-center justify-center">
+                     <div className="w-7 h-7 bg-gradient-to-br from-[#1d4ed8] to-[#3b82f6] rounded-full flex items-center justify-center">
                         <User className="h-4 w-4 text-white" />
                      </div>
                      <span className="text-sm font-medium text-gray-700">John Doe</span>

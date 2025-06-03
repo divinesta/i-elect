@@ -82,7 +82,7 @@ export default function SettingsPage() {
                         <Input id="phone" value={profileData.phone} onChange={(e) => setProfileData((prev) => ({ ...prev, phone: e.target.value }))} />
                      </div>
 
-                     <Button type="submit" className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white">
+                     <Button type="submit" className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white">
                         Update Profile
                      </Button>
                   </form>
@@ -156,7 +156,7 @@ export default function SettingsPage() {
                         <Input id="confirmPassword" type="password" value={passwordData.confirmPassword} onChange={(e) => setPasswordData((prev) => ({ ...prev, confirmPassword: e.target.value }))} />
                      </div>
 
-                     <Button type="submit" className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white">
+                     <Button type="submit" className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white">
                         Update Password
                      </Button>
                   </form>
@@ -182,7 +182,7 @@ export default function SettingsPage() {
                         {isWalletConnected && <span className="text-sm text-gray-600">0x1234...5678</span>}
                      </div>
                   </div>
-                  <Button onClick={handleWalletConnection} variant={isWalletConnected ? "outline" : "default"} className={!isWalletConnected ? "bg-[#00A9FF] hover:bg-[#0088CC] text-white" : ""}>
+                  <Button onClick={handleWalletConnection} variant={isWalletConnected ? "outline" : "default"} className={!isWalletConnected ? "bg-[#1d4ed8] hover:bg-[#1e40af] text-white" : ""}>
                      {isWalletConnected ? "Disconnect" : "Connect Wallet"}
                   </Button>
                </div>

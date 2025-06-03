@@ -36,7 +36,7 @@ export default function SignInPage() {
    return (
       <div className="min-h-screen flex">
          {/* Image Section - Left Side */}
-         <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#A0E9FF] to-[#CDF5FD]">
+         <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#60a5fa] to-[#dbeafe]">
             <div className="flex items-center justify-center w-full p-8">
                <div className="text-center space-y-6">
                   <Image
@@ -100,13 +100,13 @@ export default function SignInPage() {
 
                         <div className="flex items-center justify-between">
                            <div className="text-sm">
-                              <Link href="/forgot-password" className="text-[#00A9FF] hover:underline">
+                              <Link href="/forgot-password" className="text-[#1d4ed8] hover:underline">
                                  Forgot password?
                               </Link>
                            </div>
                         </div>
 
-                        <Button type="submit" className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white" disabled={isLoading}>
+                        <Button type="submit" className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white" disabled={isLoading}>
                            {isLoading ? "Signing In..." : "Sign In"}
                         </Button>
                      </form>
@@ -132,7 +132,7 @@ export default function SignInPage() {
 
                      <div className="mt-4 text-center text-sm">
                         <span className="text-gray-600">Don&apos;t have an account? </span>
-                        <Link href="/signup" className="text-[#00A9FF] hover:underline font-medium">
+                        <Link href="/signup" className="text-[#1d4ed8] hover:underline font-medium">
                            Sign Up
                         </Link>
                      </div>

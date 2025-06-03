@@ -57,7 +57,7 @@ export default function ResetPasswordPage() {
 
    if (isSuccess) {
       return (
-         <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#CDF5FD] to-[#A0E9FF]">
+         <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#dbeafe] to-[#60a5fa]">
             <Card className="w-full max-w-md shadow-xl">
                <CardHeader className="text-center">
                   <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
@@ -71,7 +71,7 @@ export default function ResetPasswordPage() {
                      <p className="text-green-800 font-medium">You can now sign in with your new password</p>
                   </div>
                   <Link href="/signin">
-                     <Button className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white">Continue to Sign In</Button>
+                     <Button className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white">Continue to Sign In</Button>
                   </Link>
                </CardContent>
             </Card>
@@ -81,7 +81,7 @@ export default function ResetPasswordPage() {
 
    if (!token) {
       return (
-         <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#CDF5FD] to-[#A0E9FF]">
+         <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#dbeafe] to-[#60a5fa]">
             <Card className="w-full max-w-md shadow-xl">
                <CardHeader className="text-center">
                   <CardTitle className="text-xl text-red-600">Invalid Reset Link</CardTitle>
@@ -92,7 +92,7 @@ export default function ResetPasswordPage() {
                      <p className="text-red-800">Please request a new password reset link</p>
                   </div>
                   <Link href="/forgot-password">
-                     <Button className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white">Request New Reset Link</Button>
+                     <Button className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white">Request New Reset Link</Button>
                   </Link>
                </CardContent>
             </Card>
@@ -185,7 +185,7 @@ export default function ResetPasswordPage() {
                            )}
                         </div>
 
-                        <Button type="submit" className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white" disabled={isLoading || !passwordsMatch || !passwordRequirements.every((req) => req.met)}>
+                        <Button type="submit" className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white" disabled={isLoading || !passwordsMatch || !passwordRequirements.every((req) => req.met)}>
                            {isLoading ? "Updating Password..." : "Update Password"}
                         </Button>
                      </form>
@@ -195,7 +195,7 @@ export default function ResetPasswordPage() {
          </div>
 
          {/* Image Section - Right Side */}
-         <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#A0E9FF] to-[#CDF5FD]">
+         <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#60a5fa] to-[#dbeafe]">
             <div className="flex items-center justify-center w-full p-8">
                <div className="text-center space-y-6">
                   <Image

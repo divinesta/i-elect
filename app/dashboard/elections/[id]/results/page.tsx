@@ -286,9 +286,9 @@ export default function ResultsPage() {
                            <div className="flex items-center justify-between">
                               <div>
                                  <p className="text-sm text-gray-600">Total Turnout</p>
-                                 <div className="text-3xl font-bold text-[#00A9FF]">{((election.totalVotes / election.totalVoters) * 100).toFixed(1)}%</div>
+                                 <div className="text-3xl font-bold text-[#1d4ed8]">{((election.totalVotes / election.totalVoters) * 100).toFixed(1)}%</div>
                               </div>
-                              <div className="w-20 h-20 rounded-full border-8 border-[#00A9FF] flex items-center justify-center">
+                              <div className="w-20 h-20 rounded-full border-8 border-[#1d4ed8] flex items-center justify-center">
                                  <span className="text-lg font-bold">
                                     {election.totalVotes}/{election.totalVoters}
                                  </span>

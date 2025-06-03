@@ -31,7 +31,7 @@ export default function ForgotPasswordPage() {
       return (
          <div className="min-h-screen flex">
             {/* Image Section - Left Side */}
-            <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#89CFF3] to-[#A0E9FF]">
+            <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#3b82f6] to-[#60a5fa]">
                <div className="flex items-center justify-center w-full p-8">
                   <div className="text-center space-y-6">
                      <Image
@@ -80,7 +80,7 @@ export default function ForgotPasswordPage() {
 
                         <div className="text-center space-y-3">
                            <p className="text-sm text-gray-600">Didn&apos;t receive the email? Check your spam folder or</p>
-                           <Button variant="outline" onClick={() => setIsEmailSent(false)} className="text-[#00A9FF] border-[#00A9FF] hover:bg-[#00A9FF] hover:text-white">
+                           <Button variant="outline" onClick={() => setIsEmailSent(false)} className="text-[#1d4ed8] border-[#1d4ed8] hover:bg-[#1d4ed8] hover:text-white">
                               Try Again
                            </Button>
                         </div>
@@ -124,7 +124,7 @@ export default function ForgotPasswordPage() {
                            <p className="text-xs text-gray-500">We&apos;ll send a password reset link to this email address</p>
                         </div>
 
-                        <Button type="submit" className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white" disabled={isLoading}>
+                        <Button type="submit" className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white" disabled={isLoading}>
                            {isLoading ? "Sending Reset Link..." : "Send Reset Link"}
                         </Button>
                      </form>
@@ -143,7 +143,7 @@ export default function ForgotPasswordPage() {
          </div>
 
          {/* Image Section - Right Side */}
-         <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#CDF5FD] to-[#89CFF3]">
+         <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#dbeafe] to-[#3b82f6]">
             <div className="flex items-center justify-center w-full p-8">
                <div className="text-center space-y-6">
                   <Image

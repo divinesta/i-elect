@@ -46,7 +46,7 @@ export function EditRoleDialog({ role, open, onOpenChange, onSave }: EditRoleDia
                <Button variant="outline" onClick={() => onOpenChange(false)}>
                   Cancel
                </Button>
-               <Button onClick={handleSave} className="bg-[#00A9FF] hover:bg-[#0088CC] text-white">
+               <Button onClick={handleSave} className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white">
                   Save Changes
                </Button>
             </DialogFooter>

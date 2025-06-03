@@ -105,14 +105,14 @@ export default function SignUpPage() {
                            )}
                         </div>
 
-                        <Button type="submit" className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white" disabled={isLoading}>
+                        <Button type="submit" className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white" disabled={isLoading}>
                            {isLoading ? "Creating Account..." : "Sign Up"}
                         </Button>
                      </form>
 
                      <div className="mt-4 text-center text-sm">
                         <span className="text-gray-600">Already have an account? </span>
-                        <Link href="/signin" className="text-[#00A9FF] hover:underline font-medium">
+                        <Link href="/signin" className="text-[#1d4ed8] hover:underline font-medium">
                            Sign In
                         </Link>
                      </div>
@@ -122,7 +122,7 @@ export default function SignUpPage() {
          </div>
 
          {/* Image Section - Right Side */}
-         <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#00A9FF] to-[#89CFF3]">
+         <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#1d4ed8] to-[#3b82f6]">
             <div className="flex items-center justify-center w-full p-8">
                <div className="text-center space-y-6">
                   <Image

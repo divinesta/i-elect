@@ -39,7 +39,7 @@ export default function DashboardHomePage() {
             <Card className="hover:shadow-lg transition-shadow">
                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium text-gray-600">Elections You Created</CardTitle>
-                  <Vote className="h-5 w-5 text-[#00A9FF]" />
+                  <Vote className="h-5 w-5 text-[#1d4ed8]" />
                </CardHeader>
                <CardContent>
                   <div className="text-3xl font-bold text-gray-900">5</div>
@@ -52,7 +52,7 @@ export default function DashboardHomePage() {
             <Card className="hover:shadow-lg transition-shadow">
                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium text-gray-600">Elections You Can Vote In</CardTitle>
-                  <Users className="h-5 w-5 text-[#89CFF3]" />
+                  <Users className="h-5 w-5 text-[#3b82f6]" />
                </CardHeader>
                <CardContent>
                   <div className="text-3xl font-bold text-gray-900">3</div>
@@ -65,7 +65,7 @@ export default function DashboardHomePage() {
             <Card className="hover:shadow-lg transition-shadow">
                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium text-gray-600">Total Votes Cast</CardTitle>
-                  <Calendar className="h-5 w-5 text-[#A0E9FF]" />
+                  <Calendar className="h-5 w-5 text-[#60a5fa]" />
                </CardHeader>
                <CardContent>
                   <div className="text-3xl font-bold text-gray-900">12</div>
@@ -78,7 +78,7 @@ export default function DashboardHomePage() {
          <Card>
             <CardHeader>
                <CardTitle className="flex items-center space-x-2">
-                  <AlertCircle className="h-5 w-5 text-[#00A9FF]" />
+                  <AlertCircle className="h-5 w-5 text-[#1d4ed8]" />
                   <span>Recent Notifications</span>
                </CardTitle>
                <CardDescription>Stay updated with your election activities</CardDescription>
@@ -109,11 +109,11 @@ export default function DashboardHomePage() {
             </CardHeader>
             <CardContent>
                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 border border-gray-200 rounded-lg hover:border-[#00A9FF] hover:bg-[#A0E9FF]/10 transition-colors cursor-pointer">
+                  <div className="p-4 border border-gray-200 rounded-lg hover:border-[#1d4ed8] hover:bg-[#60a5fa]/10 transition-colors cursor-pointer">
                      <h3 className="font-medium text-gray-900 mb-2">Create New Election</h3>
                      <p className="text-sm text-gray-600">Set up a new voting process for your organization</p>
                   </div>
-                  <div className="p-4 border border-gray-200 rounded-lg hover:border-[#00A9FF] hover:bg-[#A0E9FF]/10 transition-colors cursor-pointer">
+                  <div className="p-4 border border-gray-200 rounded-lg hover:border-[#1d4ed8] hover:bg-[#60a5fa]/10 transition-colors cursor-pointer">
                      <h3 className="font-medium text-gray-900 mb-2">View Active Elections</h3>
                      <p className="text-sm text-gray-600">Check elections you can participate in</p>
                   </div>

@@ -153,7 +153,7 @@ export default function ManageElectionPage() {
             </div>
             <div className="flex space-x-2">
                <Badge className={election.status === "Active" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}>{election.status}</Badge>
-               <Button onClick={handlePublishElection} disabled={election.status === "Active"} className="bg-[#00A9FF] hover:bg-[#0088CC] text-white">
+               <Button onClick={handlePublishElection} disabled={election.status === "Active"} className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white">
                   {election.status === "Active" ? "Published" : "Publish Election"}
                </Button>
             </div>
@@ -212,7 +212,7 @@ export default function ManageElectionPage() {
                         </div>
                      </div>
 
-                     <Button className="bg-[#00A9FF] hover:bg-[#0088CC] text-white">Save Changes</Button>
+                     <Button className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white">Save Changes</Button>
                   </CardContent>
                </Card>
             </TabsContent>
@@ -241,7 +241,7 @@ export default function ManageElectionPage() {
                               />
                            </div>
                         </div>
-                        <Button onClick={handleAddRole} className="mt-4 bg-[#00A9FF] hover:bg-[#0088CC] text-white">
+                        <Button onClick={handleAddRole} className="mt-4 bg-[#1d4ed8] hover:bg-[#1e40af] text-white">
                            <Plus className="h-4 w-4 mr-2" />
                            Add Role
                         </Button>
@@ -344,7 +344,7 @@ export default function ManageElectionPage() {
                                  </div>
                               </div>
 
-                              <Button onClick={handleAddCandidate} className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white">
+                              <Button onClick={handleAddCandidate} className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white">
                                  <Plus className="h-4 w-4 mr-2" />
                                  Add Candidate
                               </Button>
@@ -424,7 +424,7 @@ export default function ManageElectionPage() {
                               <Input id="voterWallet" placeholder="0x..." value={newVoter.walletAddress} onChange={(e) => setNewVoter((prev) => ({ ...prev, walletAddress: e.target.value }))} />
                            </div>
                         </div>
-                        <Button onClick={handleAddVoter} className="mt-4 bg-[#00A9FF] hover:bg-[#0088CC] text-white">
+                        <Button onClick={handleAddVoter} className="mt-4 bg-[#1d4ed8] hover:bg-[#1e40af] text-white">
                            <Plus className="h-4 w-4 mr-2" />
                            Add Voter
                         </Button>
@@ -479,7 +479,7 @@ export default function ManageElectionPage() {
                               <span className="font-bold">0</span>
                            </div>
                            <div className="w-full bg-gray-200 rounded-full h-2">
-                              <div className="bg-[#00A9FF] h-2 rounded-full" style={{ width: "0%" }}></div>
+                              <div className="bg-[#1d4ed8] h-2 rounded-full" style={{ width: "0%" }}></div>
                            </div>
                            <p className="text-sm text-gray-600">0% participation rate</p>
                         </div>

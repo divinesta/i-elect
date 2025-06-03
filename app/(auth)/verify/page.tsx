@@ -11,7 +11,7 @@ import { CheckCircle, AlertCircle } from "lucide-react"
 
 export default function VerifyPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#CDF5FD] to-[#A0E9FF]"><div className="text-center"><p>Loading verification page...</p></div></div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#dbeafe] to-[#60a5fa]"><div className="text-center"><p>Loading verification page...</p></div></div>}>
       <VerifyContent />
     </Suspense>
   )
@@ -107,7 +107,7 @@ function VerifyContent() {
   const maskedPhone = phoneNumber.replace(/(\+\d{1,3})\d+(\d{4})/, "$1****$2")
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#CDF5FD] to-[#A0E9FF]">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#dbeafe] to-[#60a5fa]">
       <div className="w-full max-w-md">
         <Card className="shadow-xl">
           <CardHeader className="text-center space-y-2">
@@ -141,7 +141,7 @@ function VerifyContent() {
                     value={digit}
                     onChange={(e) => handleOtpChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
-                    className="w-12 h-12 text-center text-lg font-semibold border-2 focus:border-[#00A9FF]"
+                    className="w-12 h-12 text-center text-lg font-semibold border-2 focus:border-[#1d4ed8]"
                     disabled={isLoading || verificationStatus === "success"}
                   />
                 ))}
@@ -149,7 +149,7 @@ function VerifyContent() {
 
               <Button
                 type="submit"
-                className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white"
+                className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white"
                 disabled={isLoading || verificationStatus === "success"}
               >
                 {isLoading ? "Verifying..." : "Verify Code"}
@@ -162,7 +162,7 @@ function VerifyContent() {
                 variant="ghost"
                 onClick={handleResendCode}
                 disabled={resendCooldown > 0 || resendCount >= 3}
-                className="text-[#00A9FF] hover:text-[#0088CC]"
+                className="text-[#1d4ed8] hover:text-[#1e40af]"
               >
                 {resendCooldown > 0
                   ? `Resend Code (${resendCooldown}s)`
