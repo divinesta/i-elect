@@ -112,6 +112,8 @@ export default function RoleVotingPage() {
                                  src={candidate.image || "/placeholder.svg"}
                                  alt={candidate.name}
                                  className="w-full h-full object-cover"
+                                 width={400}
+                                 height={400}
                                  onError={(e) => {
                                     // Fallback to initials if image fails to load
                                     const target = e.target as HTMLImageElement;

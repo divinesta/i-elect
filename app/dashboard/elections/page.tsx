@@ -3,219 +3,210 @@
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, Users, Settings, Eye, Vote, Plus } from "lucide-react";
+import { Search, Calendar, Users, MapPin, ArrowRight, Settings } from "lucide-react";
 import Link from "next/link";
 
-export default function ElectionsPage() {
-   const [activeTab, setActiveTab] = useState("my-elections");
+export default function PublicElectionsPage() {
+   const [searchTerm, setSearchTerm] = useState("");
+   const [selectedCategory, setSelectedCategory] = useState("all");
 
-   const myElections = [
+   const publicElections = [
       {
          id: 1,
          name: "Student Council Election 2024",
+         organization: "Tech University",
+         description: "Annual student council election for academic year 2024-2025",
+         category: "Academic",
+         startDate: "2024-02-01",
+         endDate: "2024-02-07",
          status: "Active",
-         startDate: "2024-01-15",
-         endDate: "2024-01-20",
-         totalVoters: 150,
-         votesReceived: 89,
+         totalVoters: 1500,
+         location: "Tech University Campus",
+         isPublic: true,
+         accreditationOpen: true,
       },
       {
          id: 2,
-         name: "Class Representative Election",
-         status: "Draft",
-         startDate: "2024-02-01",
-         endDate: "2024-02-05",
+         name: "Department Head Election",
+         organization: "Computer Science Department",
+         description: "Election for the new Computer Science Department Head",
+         category: "Academic",
+         startDate: "2024-02-10",
+         endDate: "2024-02-15",
+         status: "Upcoming",
          totalVoters: 45,
-         votesReceived: 0,
+         location: "CS Department",
+         isPublic: true,
+         accreditationOpen: true,
       },
       {
          id: 3,
+         name: "Community Board Election",
+         organization: "Riverside Community",
+         description: "Election for community board representatives",
+         category: "Community",
+         startDate: "2024-02-20",
+         endDate: "2024-02-25",
+         status: "Upcoming",
+         totalVoters: 850,
+         location: "Riverside District",
+         isPublic: true,
+         accreditationOpen: false,
+      },
+      {
+         id: 4,
          name: "Club President Election",
+         organization: "Photography Club",
+         description: "Annual election for club president and executive positions",
+         category: "Organization",
+         startDate: "2024-01-25",
+         endDate: "2024-01-30",
          status: "Completed",
-         startDate: "2024-01-01",
-         endDate: "2024-01-07",
-         totalVoters: 78,
-         votesReceived: 78,
+         totalVoters: 120,
+         location: "Photography Club",
+         isPublic: true,
+         accreditationOpen: false,
       },
    ];
 
-   const availableElections = [
-      {
-         id: 4,
-         name: "University Senate Election",
-         status: "Active",
-         startDate: "2024-01-18",
-         endDate: "2024-01-25",
-         organizer: "University Administration",
-         hasVoted: false,
-      },
-      {
-         id: 5,
-         name: "Department Head Election",
-         status: "Active",
-         startDate: "2024-01-20",
-         endDate: "2024-01-27",
-         organizer: "Computer Science Dept",
-         hasVoted: true,
-      },
-   ];
+   const categories = ["all", "Academic", "Community", "Organization", "Corporate"];
+
+   const filteredElections = publicElections.filter((election) => {
+      const matchesSearch = election.name.toLowerCase().includes(searchTerm.toLowerCase()) || election.organization.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = selectedCategory === "all" || election.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+   });
 
    const getStatusColor = (status: string) => {
       switch (status) {
          case "Active":
-            return "bg-green-100 text-green-800";
-         case "Draft":
-            return "bg-yellow-100 text-yellow-800";
+            return "bg-green-100 text-green-800 border-green-200";
+         case "Upcoming":
+            return "bg-blue-100 text-blue-800 border-blue-200";
          case "Completed":
-            return "bg-gray-100 text-gray-800";
+            return "bg-gray-100 text-gray-800 border-gray-200";
          default:
-            return "bg-gray-100 text-gray-800";
+            return "bg-gray-100 text-gray-800 border-gray-200";
       }
    };
 
    return (
-      <div className="space-y-6">
-         <div className="flex items-center justify-between">
-            <div>
-               <h1 className="text-3xl font-bold text-gray-900">Elections</h1>
-               <p className="text-gray-600">Manage your elections and participate in voting</p>
+      <div className="min-h-screen bg-gray-50">
+         {/* Header */}
+         <div className="bg-gradient-to-r from-[#00A9FF] to-[#89CFF3] text-white">
+            <div className="max-w-7xl mx-auto px-6 py-16">
+               <div className="text-center space-y-4">
+                  <h1 className="text-4xl font-bold">Discover Elections</h1>
+                  <p className="text-xl text-blue-100">Find and participate in elections happening around you</p>
+               </div>
             </div>
-            <Button className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white" asChild>
-               <Link href="/dashboard/elections/create">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Create Election
-               </Link>
-            </Button>
          </div>
 
-         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-            <TabsList className="grid w-full grid-cols-2 lg:w-[400px]">
-               <TabsTrigger value="my-elections">My Elections</TabsTrigger>
-               <TabsTrigger value="available-to-vote">Available to Vote</TabsTrigger>
-            </TabsList>
+         <div className="max-w-7xl mx-auto px-6 py-8">
+            {/* Search and Filters */}
+            <div className="mb-8 space-y-4">
+               <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <Input placeholder="Search elections by name or organization..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-10 h-12 text-lg" />
+               </div>
 
-            <TabsContent value="my-elections" className="space-y-4">
-               {myElections.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                     {myElections.map((election) => (
-                        <Card key={election.id} className="hover:shadow-lg transition-shadow">
-                           <CardHeader>
-                              <div className="flex items-start justify-between">
-                                 <CardTitle className="text-lg">{election.name}</CardTitle>
-                                 <Badge className={getStatusColor(election.status)}>{election.status}</Badge>
-                              </div>
-                              <CardDescription>
-                                 <div className="flex items-center space-x-4 text-sm">
-                                    <span className="flex items-center">
-                                       <Calendar className="h-4 w-4 mr-1" />
-                                       {election.startDate} - {election.endDate}
-                                    </span>
-                                 </div>
-                              </CardDescription>
-                           </CardHeader>
-                           <CardContent className="space-y-4">
-                              <div className="flex items-center justify-between text-sm">
-                                 <span className="flex items-center text-gray-600">
-                                    <Users className="h-4 w-4 mr-1" />
-                                    Voters: {election.totalVoters}
-                                 </span>
-                                 <span className="text-[#1d4ed8] font-medium">
-                                    {election.votesReceived}/{election.totalVoters} votes
-                                 </span>
-                              </div>
+               <div className="flex flex-wrap gap-2">
+                  {categories.map((category) => (
+                     <Button
+                        key={category}
+                        variant={selectedCategory === category ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setSelectedCategory(category)}
+                        className={selectedCategory === category ? "bg-[#00A9FF] hover:bg-[#0088CC]" : ""}
+                     >
+                        {category === "all" ? "All Categories" : category}
+                     </Button>
+                  ))}
+               </div>
+            </div>
 
-                              <div className="flex space-x-2">
-                                 <Button size="sm" variant="outline" className="flex-1" asChild>
-                                    <Link href={`/dashboard/elections/${election.id}/manage`}>
-                                       <Settings className="h-4 w-4 mr-1" />
-                                       Manage
+            {/* Elections Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+               {filteredElections.map((election) => (
+                  <Card key={election.id} className="hover:shadow-lg transition-shadow group">
+                     <CardHeader>
+                        <div className="flex items-start justify-between">
+                           <div className="space-y-1">
+                              <CardTitle className="text-lg group-hover:text-[#00A9FF] transition-colors">{election.name}</CardTitle>
+                              <CardDescription className="font-medium text-[#00A9FF]">{election.organization}</CardDescription>
+                           </div>
+                           <Badge className={`${getStatusColor(election.status)} border`}>{election.status}</Badge>
+                        </div>
+                     </CardHeader>
+                     <CardContent className="space-y-4">
+                        <p className="text-sm text-gray-600 line-clamp-2">{election.description}</p>
+
+                        <div className="space-y-2 text-sm">
+                           <div className="flex items-center space-x-2 text-gray-600">
+                              <Calendar className="h-4 w-4" />
+                              <span>
+                                 {election.startDate} - {election.endDate}
+                              </span>
+                           </div>
+                           <div className="flex items-center space-x-2 text-gray-600">
+                              <Users className="h-4 w-4" />
+                              <span>{election.totalVoters} eligible voters</span>
+                           </div>
+                           <div className="flex items-center space-x-2 text-gray-600">
+                              <MapPin className="h-4 w-4" />
+                              <span>{election.location}</span>
+                           </div>
+                        </div>
+
+                        <div className="pt-4 border-t">
+                           <div className="flex flex-col space-y-2">
+                              {/* Admin/Manage Button */}
+                              <Button variant="outline" className="w-full" asChild>
+                                 <Link href={`/dashboard/elections/${election.id}/admin`}>
+                                    <Settings className="h-4 w-4 mr-2" />
+                                    Manage Election
+                                 </Link>
+                              </Button>
+
+                              {/* Existing action buttons */}
+                              {election.accreditationOpen ? (
+                                 <Button className="w-full bg-[#00A9FF] hover:bg-[#0088CC] text-white" asChild>
+                                    <Link href={`/dashboard/elections/${election.id}/accredit`}>
+                                       Get Accredited
+                                       <ArrowRight className="h-4 w-4 ml-2" />
                                     </Link>
                                  </Button>
-                                 <Button size="sm" variant="outline" className="flex-1" asChild>
-                                    <Link href={`/dashboard/elections/${election.id}/results`}>
-                                       <Eye className="h-4 w-4 mr-1" />
-                                       Results
-                                    </Link>
+                              ) : election.status === "Active" ? (
+                                 <Button variant="outline" className="w-full" disabled>
+                                    Accreditation Closed
                                  </Button>
-                              </div>
-                           </CardContent>
-                        </Card>
-                     ))}
-                  </div>
-               ) : (
-                  <Card className="text-center py-12">
-                     <CardContent>
-                        <Vote className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                        <h3 className="text-lg font-medium text-gray-900 mb-2">No elections yet</h3>
-                        <p className="text-gray-600 mb-4">Create your first election to get started</p>
-                        <Button className="bg-[#1d4ed8] hover:bg-[#1e40af] text-white" asChild>
-                           <Link href="/dashboard/elections/create">
-                              <Plus className="h-4 w-4 mr-2" />
-                              Create Election
-                           </Link>
-                        </Button>
-                     </CardContent>
-                  </Card>
-               )}
-            </TabsContent>
-
-            <TabsContent value="available-to-vote" className="space-y-4">
-               {availableElections.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                     {availableElections.map((election) => (
-                        <Card key={election.id} className="hover:shadow-lg transition-shadow">
-                           <CardHeader>
-                              <div className="flex items-start justify-between">
-                                 <CardTitle className="text-lg">{election.name}</CardTitle>
-                                 <Badge className={getStatusColor(election.status)}>{election.status}</Badge>
-                              </div>
-                              <CardDescription>
-                                 <div className="space-y-1 text-sm">
-                                    <div className="flex items-center">
-                                       <Calendar className="h-4 w-4 mr-1" />
-                                       {election.startDate} - {election.endDate}
-                                    </div>
-                                    <div>Organized by: {election.organizer}</div>
-                                 </div>
-                              </CardDescription>
-                           </CardHeader>
-                           <CardContent className="space-y-4">
-                              {election.hasVoted ? (
-                                 <div className="text-center py-2">
-                                    <Badge className="bg-green-100 text-green-800">✓ Vote Submitted</Badge>
-                                 </div>
                               ) : (
-                                 <Button className="w-full bg-[#1d4ed8] hover:bg-[#1e40af] text-white" asChild>
-                                    <Link href={`/dashboard/elections/${election.id}/vote`}>
-                                       <Vote className="h-4 w-4 mr-2" />
-                                       Vote Now
+                                 <Button variant="outline" className="w-full" asChild>
+                                    <Link href={`/dashboard/elections/${election.id}/results`}>
+                                       View Results
+                                       <ArrowRight className="h-4 w-4 ml-2" />
                                     </Link>
                                  </Button>
                               )}
-
-                              <Button size="sm" variant="outline" className="w-full" asChild>
-                                 <Link href={`/dashboard/elections/${election.id}/results`}>
-                                    <Eye className="h-4 w-4 mr-1" />
-                                    View Details
-                                 </Link>
-                              </Button>
-                           </CardContent>
-                        </Card>
-                     ))}
-                  </div>
-               ) : (
-                  <Card className="text-center py-12">
-                     <CardContent>
-                        <Vote className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                        <h3 className="text-lg font-medium text-gray-900 mb-2">No elections available</h3>
-                        <p className="text-gray-600">You haven&apos;t been added to any elections yet</p>
+                           </div>
+                        </div>
                      </CardContent>
                   </Card>
-               )}
-            </TabsContent>
-         </Tabs>
+               ))}
+            </div>
+
+            {filteredElections.length === 0 && (
+               <div className="text-center py-16">
+                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                     <Search className="h-8 w-8 text-gray-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">No elections found</h3>
+                  <p className="text-gray-600">Try adjusting your search terms or filters</p>
+               </div>
+            )}
+         </div>
       </div>
    );
 }
