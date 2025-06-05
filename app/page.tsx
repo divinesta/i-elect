@@ -1,7 +1,6 @@
 "use client";
-
-// import VotePage from "./vote/page";
+import DashboardHomePage from "./dashboard/page";
 
 export default function Page() {
-   return <div>Hello</div>;
+   return <DashboardHomePage />;
 }
