@@ -1,6 +1,5 @@
 "use client";
 
-import { useParams } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -9,10 +8,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Crown, ExternalLink, Users, BarChart3, TrendingUp, Calendar, PieChart, ArrowLeft, Shield, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function PublicResultsPage() {
-   const params = useParams();
-   const electionId = params.id;
    const [activeTab, setActiveTab] = useState("overview");
    const [chartLoaded, setChartLoaded] = useState(false);
 
@@ -240,7 +238,7 @@ export default function PublicResultsPage() {
                                  </CardHeader>
                                  <CardContent>
                                     <div className="text-center space-y-4">
-                                       <img src={winner.photo || "/placeholder.svg"} alt={winner.name} className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-yellow-400" />
+                                       <Image src={winner.photo || "/placeholder.svg"} alt={winner.name} className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-yellow-400" />
                                        <div>
                                           <h3 className="text-xl font-bold text-gray-900">{winner.name}</h3>
                                           <p className="text-sm text-gray-600">{winner.course}</p>
@@ -306,7 +304,7 @@ export default function PublicResultsPage() {
                                        <div key={candidate.id} className="flex items-center space-x-4 p-4 border rounded-lg">
                                           <div className="flex items-center space-x-3">
                                              <div className="text-lg font-bold text-gray-500">#{index + 1}</div>
-                                             <img src={candidate.photo || "/placeholder.svg"} alt={candidate.name} className="w-12 h-12 rounded-full object-cover" />
+                                             <Image src={candidate.photo || "/placeholder.svg"} alt={candidate.name} className="w-12 h-12 rounded-full object-cover" />
                                              <div>
                                                 <h4 className="font-semibold flex items-center space-x-2">
                                                    <span>{candidate.name}</span>

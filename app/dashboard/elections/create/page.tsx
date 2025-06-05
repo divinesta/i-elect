@@ -15,15 +15,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { X, Plus } from "lucide-react";
 
 interface VoterField {
-  name: string;
-  type: string;
-  required: boolean;
+   name: string;
+   type: string;
+   required: boolean;
 }
 
 interface Admin {
-  name: string;
-  email: string;
-  pin: string;
+   name: string;
+   email: string;
+   pin: string;
 }
 
 export default function CreateElectionPage() {

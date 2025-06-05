@@ -69,7 +69,7 @@ export default function ManageElectionPage() {
       quote: "",
       photo: "",
    });
-   const [newVoter, setNewVoter] = useState({ email: "", walletAddress: "" });
+   // const [newVoter, setNewVoter] = useState({ email: "", walletAddress: "" });
 
    const [editingRole, setEditingRole] = useState<{ id: number; name: string; description: string } | null>(null);
    const [showEditDialog, setShowEditDialog] = useState(false);
